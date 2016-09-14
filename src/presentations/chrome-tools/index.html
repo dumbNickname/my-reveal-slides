@@ -1,0 +1,627 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
+
+        <link rel="stylesheet" href="/jspm_packages/github/hakimel/reveal.js@3.3.0/css/reveal.css">
+        <link rel="stylesheet" href="/jspm_packages/github/hakimel/reveal.js@3.3.0/css/theme/white.css">
+
+        <link rel="stylesheet" href="/src/css/common.css">
+        <link rel="stylesheet" href="/src/presentations/chrome-tools/css/chromeTools.css">
+        <link rel="stylesheet" href="/src/presentations/chrome-tools/css/solarized-light.css">
+		<!--<link rel="stylesheet" href="/jspm_packages/github/hakimel/reveal.js@3.3.0/lib/css/zenburn.css">-->
+
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+                <section id="intro">
+                    <h1>
+                        <img class="plain chrome-image" src="/src/presentations/chrome-tools/img/chrome-icon.png">
+                        <span style="font-size: 1em" class="inline secondaryFont fallbackColor lowercase">developer</span>
+                        <span class="inline primaryColor">Tools</span>
+                    </h1>
+                    <p class="fragment slide-in secondaryColor"><strong>Full documentation can be found <a href="https://developers.google.com/web/tools/chrome-devtools/">here</a></strong></p>
+                    <p class="author-footer">
+                        <span class="author-footer-by">presentation by: </span>
+                        <span class="secondaryFont"><em>Bartek Pietrowski</em></span>
+                    </p>
+                </section>
+
+
+                <section data-transition="slide-in fade-out">
+                    <h3>Some stuff that we will go through:</h3>
+                    <ul class="no-bullets">
+                        <li class="secondaryColor">Inspecting elements/styles/animations</li>
+                        <li class="tertiaryColor">Console utils</li>
+                        <li class="fallbackColor">Debugging</li>
+                        <li class="secondaryColor">Performance</li>
+                        <li class="tertiaryColor">Device mode</li>
+                        <li class="fallbackColor">Application state - Cookies/Local Storage</li>
+                        <li class="secondaryColor">...and more</li>
+                    </ul>
+                </section>
+
+
+                <section data-background-color="var(--secondary-color)">
+                    <h1 style="font-size: 3em; margin-bottom: -0.25em;" class="fallbackColor" >Let's start</h1>
+                    <h1 style="font-size: 4.5em; margin-bottom: -0.25em;" class="primaryColor" >with...</h1>
+                    <h1 style="font-size: 5em;"class="flippedColor" >basics</h1>
+                </section>
+
+                <section data-background-transition="slide">
+                    <h1 style="margin-top: -3em;">Elements Panel</h1>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/elements.png">
+                        </div>
+                        <div style="margin-top: 2.5em;" class="fragment fade-in" data-fragment-index="0">
+                            <ul class="no-bullets">
+                                <li>Live edit DOM and styles</li>
+                                <li>Box model</li>
+                                <li>Calculated styles</li>
+                                <li>Local changes (see in Sources)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section data-background-transition="slide">
+                    <h1 style="margin-top: -3em;">Edit Styles</h1>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <img style="max-height: 11em;" class="plain" src="/src/presentations/chrome-tools/img/styles-annotated.png">
+                        </div>
+                        <div class="fragment fade-in" data-fragment-index="0">
+                            <div class="fragment fade-out" data-fragment-index="1">
+                                <img style="max-height: 11em;" class="plain" src="/src/presentations/chrome-tools/img/eyedropper.jpg">
+                            </div>
+                        </div>
+                        <div style="margin-top: 2em;" class="fragment fade-in" data-fragment-index="1">
+                            <ul class="no-bullets">
+                                <li>Inspect element style / by selector</li>
+                                <li>Add, enable, and disable CSS classes</li>
+                                <li>Dynamic styles :active, :focus, :hover, and :visited</li>
+                                <li>Add color to style rule</li>
+                                <li>Color picker and eyedropper</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <section>
+                    <h3><kbd>Up</kbd> and <kbd>Down</kbd></h3>
+                    <p>increment and decrement the value by 1,</p> 
+                    <p>(or by .1 if between -1 and 1.)</p>
+                </section>
+                <section>
+                    <h3><kbd>Alt</kbd>+<kbd>Up</kbd> and <kbd>Alt</kbd>+<kbd>Down</kbd></h3>
+                    <p>increment and decrement the value by 0.1.</p> 
+                    <hr>
+                    <h3><kbd>Shift</kbd>+<kbd>Up</kbd> and <kbd>Shift</kbd>+<kbd>Down</kbd></h3>
+                    <p>increment or decrement by 10</p> 
+                    <hr>
+                    <h3><kbd>Shift</kbd>+<kbd>Up</kbd> and <kbd>Shift</kbd>+<kbd>Down</kbd></h3>
+                    <p>increment or decrement by 100</p> 
+                </section>
+
+
+                <section data-background-color="var(--secondary-color)">
+                    <h1 style="font-size: 7em; margin-bottom: -0.25em;" class="fallbackColor" >CSS</h1>
+                    <h1 style="font-size: 4.3em; margin-bottom: -0.25em;" class="primaryColor" >custom</h1>
+                    <h1 style="font-size: 3em;"class="flippedColor" >properties</h1>
+                </section>
+
+                <section>
+                    <h3><a href="https://developers.google.com/web/updates/2016/02/css-variables-why-should-you-care">CSS variables - why should we care?</a></h3>
+                    <img style="max-height: 10em;" src="/src/presentations/chrome-tools/img/css-var-defined-on-root.png" alt="CSS variables">
+                </section>
+
+                <section>
+                    <h3>Declaring and using variables</h3>
+                    <pre><code class="css" data-trim data-noescape>
+:root {
+    --main-color: #06c;
+}
+
+#foo h1 {
+    color: var(--main-color);
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Variables inheritance</h3>
+                    <pre><code class="css" data-trim data-noescape>
+:root { --color: blue; }
+div { --color: green; }
+#alert { --color: red; }
+* { color: var(--color); }
+                    </code></pre>
+                    <pre><code  class="html" data-trim>
+<p>I inherited blue from the root element!</p>
+<div>I got green set directly on me!</div>
+<div id="alert">
+    While I got red set directly on me!
+    <p>I’m red too, because of inheritance!</p>
+</div>
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Defaults and reusing variables</h3>
+                    <pre><code data-trim data-noescape>
+/* Derive value from other custom properties. */
+:root {
+    --primary-color: red;
+    --logo-text: var(--primary-color);
+}
+                    </code></pre>
+                    <pre><code data-trim data-noescape>
+/* Defaults */
+p {
+    padding: var(--pad, 10px 15px 20px);
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Variables in components</h3>
+                    <pre><code data-trim data-noescape>
+/* In the component’s style: */
+.component .header {
+    color: var(--header-color, blue);
+}
+.component .text {
+    color: var(--text-color, black);
+}
+
+/* Partial override */
+.component {
+    --text-color: #080;
+    /* header-color isn’t set,
+    and so remains blue,
+    the fallback value */
+}
+                    </code></pre>
+                </section>
+
+
+                <section>
+                    <h1><span style="display:block">Check out the</span><a href="https://googlechrome.github.io/samples/css-custom-properties/index.html">DEMO</a></h1>
+                    <p>and play with css variables</p>
+                </section>
+
+                <section data-background-color="#4b8bdd">
+                    <h1>
+                         <a style="color:white" href="https://daneden.github.io/animate.css/">Animations</a>
+                    </h1>
+                    
+                    <a href="http://tympanus.net/Tutorials/AnimatedAnimals/">
+                        <img class="plain" style="max-height: 10em;" src="https://s3.amazonaws.com/media-p.slid.es/uploads/174419/images/2582937/husky.gif">
+                    </a>
+                </section>
+
+
+                <section>
+                    <h1 style="font-size: 5.7em; margin-bottom: -0.25em;" class="fallbackColor" >More</h1>
+                    <h1 style="font-size: 5em; margin-bottom: -0.25em;" class="secondaryColor" >detail</h1>
+                    <h1 style="font-size: 3.7em;" class="tertiaryColor" >on DOM</h1>
+                </section>
+
+                <section>
+                    <h3>DOM editing</h3>
+                    <ul class="no-bullets">
+                        <li>Breadcrumbs</li>
+                        <li>Live edit, edit as HTML</li>
+                        <li>Move, delete node</li>
+                        <li>More actions menu, scroll into view</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>DOM Breakpoints</h3>
+                    <ul class="no-bullets">
+                        <li>Subtree Modifications</li>
+                        <li>Attribute Modifications</li>
+                        <li>Node Removal</li>
+                    </ul>
+                </section>
+
+
+                <!--https://developers.google.com/web/tools/chrome-devtools/iterate/inspect-styles/edit-dom?hl=en-->
+
+
+                <section>
+                    <h3>Event listeners</h3>
+                    <ul class="no-bullets">
+                        <li>View element event listeners</li>
+                        <li>Show listener function definition</li>
+                        <li>View framework event listeners</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Now try debugging this page</h3>
+
+                    <div id="add-remove-dom-div"></div>
+                    <button id="add-p-button">Add paragraph</button>
+                    <button id="add-attribute-button">Add attribute</button>
+                    <button id="remove-button">Remove span</button>
+
+
+                    <script type="text/javascript">
+                        document.getElementById('add-p-button')
+                            .addEventListener('click', function(ev){
+                                var element = document.getElementById('add-remove-dom-div'),
+                                    //modify the element's subtree.
+                                    mySpan = document.createElement('p');
+                                mySpan.innerHTML = 'Newly added paragraph';
+                                element.appendChild( mySpan );
+                            });
+
+                        document.getElementById('add-attribute-button')
+                            .addEventListener('click', function(ev){
+                                var element = document.getElementById('add-remove-dom-div');
+                                // class attribute of element has been modified.
+                                element.className = 'active';
+                            });
+
+                        document.getElementById('remove-button')
+                            .addEventListener('click', function(ev){
+                                document.getElementById('add-remove-dom-div').remove();
+                            });
+                    </script>
+                </section>
+
+                <section>
+                    <p>Click the link below for details</p>
+                    <h2>
+                        <a href="https://developers.google.com/web/tools/chrome-devtools/iterate/inspect-styles/shortcuts?hl=en">Keybord Shortcuts</a>
+                    </h2>
+                    <p>Waaaay too much for slides ;)</p>
+                </section>
+
+
+                <section data-background-color="var(--secondary-color)">
+                    <h1 style="font-size: 4.2em; margin-bottom: -0.5em;" class="fallbackColor" >Using</h1>
+                    <h1 style="font-size: 7em; margin-bottom: -0.25em;" class="primaryColor" >the</h1>
+                    <h1 style="font-size: 2.7em;" class="flippedColor" >console</h1>
+                </section>
+
+
+                <section>
+                    <h3>Basic features</h3>
+                    <ul class="no-bullets">
+                        <li>Message stacking / Show timestamps (Settings)</li>
+                        <li>Preserve log</li>
+                        <li>Save history</li>
+                        <li>Output from frames or extensions</li>
+                        <li>Filtering</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Logging</h3>
+                     <pre><code data-trim data-noescape>
+console.log("Node count:", a.childNodes.length, 
+    "and the current time is:", Date.now());
+
+console.error("Error: %s (%i)", "Server is  not responding", 500);
+
+console.warn('Warning! Too few nodes (%d)', a.childNodes.length);
+
+                    </code></pre>
+                </section>
+
+                <section>
+                     <h3>Grouping</h3>
+                     <pre><code data-trim data-noescape>
+var user = "jsmith", authenticated = false;
+console.group("Authentication phase");
+console.log("Authenticating user '%s'", user);
+// authentication code here...
+if (!authenticated) {
+    console.log("User '%s' not authenticated.", user)
+}
+console.groupEnd();
+                     </code></pre>
+
+                </section>
+
+                <section>
+                     <h3>Nested Grouping</h3>
+                     <pre><code data-trim data-noescape>
+var user = "jsmith", authenticated = true, authorized = true;
+// Top-level group
+console.group("Authenticating user '%s'", user);
+//console.groupCollapsed("Authenticating user '%s'", user);
+if (authenticated) {
+    console.log("User '%s' was authenticated", user);
+    // Start nested group
+    console.group("Authorizing user '%s'", user);
+    if (authorized) {
+        console.log("User '%s' was authorized.", user);
+    }
+    // End nested group
+    console.groupEnd();
+}
+// End top-level group
+console.groupEnd();
+console.log("A group-less log trace.");
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Conditional logging</h3>
+                     <pre><code data-trim data-noescape>
+//error logged only when condition fails
+console.assert(list.childNodes.length < 500, "Node count is > 500.");
+                     </code></pre>
+                </section>
+
+                <section>
+                    <h3>String substitution and formatting</h3>
+                    <table style="font-size:80%; margin-top: 2em">
+                        <tbody>
+                            <tr>
+                                <td>%s</td>
+                                <td style="text-align: left">Formats the value as a string</td>
+                            </tr>
+                            <tr>
+                                <td><span>%i&nbsp;or&nbsp;%d</span></td>
+                                <td style="text-align: left">Formats the value as an integer</td>
+                            </tr>
+                            <tr>
+                                <td>%f</td>
+                                <td style="text-align: left">Formats the value as a floating point value</td>
+                            </tr>
+                            <tr>
+                                <td>%o</td>
+                                <td style="text-align: left;">Formats the value as an expandable DOM element.</td>
+                            </tr>
+                            <tr>
+                                <td>%O</td>
+                                <td style="text-align: left;">Formats the value as an expandable JavaScript object (equivalent to console.dir)</td>
+                            </tr>
+                            <tr>
+                                <td>%c</td>
+                                <td style="text-align: left">Applies CSS style rules to the output string as specified by the second parameter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                     <h3>Console log styling example</h3>
+                     <pre><code data-trim data-noescape>
+console.log("This will %cbe formatted %cwith different styles", 
+    "color: green;", "color: blue; font-size: x-large");
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Compare similar data Objects</h3>
+                     <pre><code data-trim data-noescape>
+console.table([{a:1, b:2, c:3}, {a:"foo", b:false, c:undefined}]);
+console.table([[1,2,3], [2,3,4]]);
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Compare Similar Data Objects</h3>
+                     <p style="margin-top: -0.8em">(specific properties)</p>
+                     <pre><code data-trim data-noescape>
+function Person(firstName, lastName, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+}
+
+var family = {};
+family.mother = new Person("Susan", "Doyle", 32);
+family.father = new Person("John", "Doyle", 33);
+family.daughter = new Person("Lily", "Doyle", 5);
+family.son = new Person("Mike", "Doyle", 8);
+
+console.table(family, ["firstName", "lastName", "age"]);
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Measure execution times</h3>
+                     <pre><code data-trim data-noescape>
+console.time("Array initialize");
+var array= new Array(1000000);
+for (var i = array.length - 1; i >= 0; i--) {
+    array[i] = new Object();
+};
+console.timeEnd("Array initialize");
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Combine with timeline!</h3>
+                     <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/track-executions-time-annotation-on-timeline.png">
+
+                </section>
+
+                <section>
+                     <h3>Add a mark to the timeline with the timeStamp()</h3>
+                     <pre><code data-trim data-noescape>
+function AddResult(name, result) {
+    console.timeStamp("Adding result");
+    var text = name + ': ' + result;
+    var results = document.getElementById("results");
+    results.innerHTML += (text + "&ltbr&gt");
+}
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Counting statement executions</h3>
+                     <pre><code data-trim data-noescape>
+function login(user) {
+    console.count("Login called for user " + user);
+}
+
+users = [ // by last name since we have too many Pauls.
+    'Irish',
+    'Bakaus',
+    'Kinlan'
+];
+
+users.forEach(function(element, index, array) {
+    login(element);
+});
+
+login(users[0]);
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Print stack trace</h3>
+                     <pre><code data-trim data-noescape>
+console.trace()
+                     </code></pre>
+              
+                     <h3>A way to notify server about errors in JS</h3>
+                     <pre><code data-trim data-noescape>
+window.onerror = function(message, url, line){
+    ...
+}
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Build-in selection shortcuts</h3>
+                     <pre><code data-trim data-noescape>
+$('code') // first code element in the document.
+
+$$('figure') // an array of all figure elements in the document.
+
+$x('html/body/p') // an array of all paragraphs in the body.
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Inspect from console</h3>
+                     <pre><code data-trim data-noescape>
+$('[data-target="inspecting-dom-elements-example"]')
+
+inspect($_) // This takes advantage of the $_ property 
+// to get the output of the last evaluated expression.
+// Use $0 - 4, to access recently selected elements 
+// and objects from within the console
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Monitor events</h3>
+                     <pre><code data-trim data-noescape>
+// if event parameter not provided, all events assumed 
+monitorEvents(document.body, 'click');
+
+// array of events also applicable
+monitorEvents(document.body, ['click', 'hover']);
+                     </code></pre>
+
+                     <pre><code data-trim data-noescape>
+unmonitorEvents(document.body); //stop monitoring
+                     </code></pre>
+                </section>
+
+                <section>
+                     <h3>Monitor function calls</h3>
+                     <pre><code data-trim data-noescape>
+function sum(x, y) {
+        return x + y;
+    }
+monitor(sum);
+                     </code></pre>
+                </section>
+
+
+                <section>
+                    <h1>Console API</h1>
+                    <ul class="no-bullets">
+                        <li>console.log</li>
+                        <li>console.group</li>
+                        <li>console.groupCollapsed</li>
+                        <li>console.erro/warn/info</li>
+                        <li>console.assert</li>
+                        <li>console - formatting and styling</li>
+                        <li>console.table</li>
+                        <li>console.profile</li>
+                        <li>console.time</li>
+                        <li>console.timeStamp</li>
+                        <li>console.count</li>
+                        <li>console.trace</li>
+                    </ul>
+                </section>
+
+
+
+                <section>
+                    <h3>Extras</h3>
+                    <ul class="no-bullets">
+                        <li>Animations</li>
+                        <li>Network conditions</li>
+                        <li>Rendering</li>
+                        <li>Device Mode</li>
+                        <li>Search, QuickSource, .. etc</li>
+                    </ul>
+                </section>
+
+ 
+
+                <section>
+                    <h1>Breakpoints and debugging</h1>
+                    <ul class="no-bullets">
+                        <li>Conditional breakpoints</li>
+                    </ul>
+                </section>
+
+
+
+                <section>
+                    <h3>Workspaces</h3>
+                </section>
+
+                <section>
+                    <h3>Snippets</h3>
+                </section>
+
+
+
+
+
+<!--
+Breakpoints and debugging
+Network panel ß filtering domain etc.
+
+https://developers.google.com/speed/pagespeed/insights/
+https://developers.google.com/web/tools/chrome-devtools/profile/network-performance/resource-loading
+
+Request lifecycle
+Network throttling
+
+Performance
+RAIL
+-->
+
+            </div>
+        </div>
+
+        <script src="/jspm_packages/system.js"></script>
+        <script src="/config.js"></script>
+        <script>
+            System.import('/src/presentations/chrome-tools/js/main');
+        </script>
+    </body>
+</html>
