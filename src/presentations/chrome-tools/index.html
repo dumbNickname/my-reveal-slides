@@ -224,15 +224,6 @@ p {
                     </ul>
                 </section>
 
-                <section>
-                    <h3>DOM Breakpoints</h3>
-                    <ul class="no-bullets">
-                        <li>Subtree Modifications</li>
-                        <li>Attribute Modifications</li>
-                        <li>Node Removal</li>
-                    </ul>
-                </section>
-
 
                 <!--https://developers.google.com/web/tools/chrome-devtools/iterate/inspect-styles/edit-dom?hl=en-->
 
@@ -245,6 +236,37 @@ p {
                         <li>View framework event listeners</li>
                     </ul>
                 </section>
+
+
+                <section data-background-color="var(--secondary-color)">
+                    <h1 style="font-size: 2.3em; margin-bottom: -0.75em;" class="fallbackColor" >Breakpoints</h1>
+                    <h1 style="font-size: 7em; margin-bottom: -0.22em;" class="primaryColor" >and</h1>
+                    <h1 style="font-size: 2.7em;" class="flippedColor" >debugging</h1>
+                </section>
+
+
+                <section>
+                    <h3>Breakpoints and debugging</h3>
+                    <ul class="no-bullets">
+                        <li>Simple and Conditional Breakpoints</li>
+                        <li>Pause on Exceptions</li>
+                        <li>Data Manipulation</li>
+                        <li>Source Map/Debug Obfuscated Code</li>
+                        <li>XHR Breakpoints</li>
+                        <li>Event Listener Breakpoints</li>
+                        <li>DOM Change Breakpoints</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>DOM Breakpoints</h3>
+                    <ul class="no-bullets">
+                        <li>Subtree Modifications</li>
+                            <li>Attribute Modifications</li>
+                        <li>Node Removal</li>
+                    </ul>
+                </section>
+
 
                 <section>
                     <h3>Now try debugging this page</h3>
@@ -279,12 +301,11 @@ p {
                     </script>
                 </section>
 
+
                 <section>
-                    <p>Click the link below for details</p>
-                    <h2>
-                        <a href="https://developers.google.com/web/tools/chrome-devtools/iterate/inspect-styles/shortcuts?hl=en">Keybord Shortcuts</a>
-                    </h2>
-                    <p>Waaaay too much for slides ;)</p>
+                    <h3>Workspaces</h3>
+                    <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/addfolder.png">
+                    <h3>... and Snippets</h3>
                 </section>
 
 
@@ -549,28 +570,69 @@ monitor(sum);
 
                 <section>
                     <h1>Console API</h1>
-                    <ul class="no-bullets">
-                        <li>console.log</li>
-                        <li>console.group</li>
-                        <li>console.groupCollapsed</li>
-                        <li>console.erro/warn/info</li>
-                        <li>console.assert</li>
-                        <li>console - formatting and styling</li>
-                        <li>console.table</li>
-                        <li>console.profile</li>
-                        <li>console.time</li>
-                        <li>console.timeStamp</li>
-                        <li>console.count</li>
-                        <li>console.trace</li>
-                    </ul>
+
+                    <div style="width:50%; float:left">
+                        <ul class="no-bullets">
+                            <li>console.<span style="color:blue">log</span></li>
+                            <li>console.<span style="color:blue">group</span></li>
+                            <li>console.<span style="color:blue">groupCollapsed</span></li>
+                            <li>console.<span style="color:red">error</span>/<span style="color:#ffed00">warn</span>/<span style="color:blue">info</span></li>
+                            <li>console.<span style="color:blue">assert</li>
+                            <li>console - <span style="color:blue">formatting and styling</span></li>
+                        </ul>                        
+                    </div>
+                    <div style="width:50%; float:right">
+                        <ul class="no-bullets">
+                            <li>console.<span style="color:blue">table</span></li>
+                            <li>console.<span style="color:blue">profile</span></li>
+                            <li>console.<span style="color:blue">time</span></li>
+                            <li>console.<span style="color:blue">timeStamp</span></li>
+                            <li>console.<span style="color:blue">count</span></li>
+                            <li>console.<span style="color:blue">trace</span></li>
+                        </ul>                        
+                    </div>
+                </section>
+
+
+
+                <section data-background-color="var(--secondary-color)">
+                    <h1 style="font-size: 5em; margin-bottom: 0em;" class="flippedColor" >Network</h1>
+                    <h1 style="font-size: 3.3em;" class="primaryColor" >performance</h1>
                 </section>
 
 
 
                 <section>
+                    <h3 style="margin-top: -5em;">Network panel overview</h3>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/network.png">
+                        </div>
+                        <div style="margin-top: 1.5em;" class="fragment fade-in" data-fragment-index="0">
+                            <ol>
+                                <li>Controls</li>
+                                <li>Filters</li>
+                                <li>Overview</li>
+                                <li>Requests Table</li>
+                                <li>Summary</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <section>
+                    <h3>Capture screenshots when recording</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/filmstrip-timeline-overlay.png">
+                </section>
+
+
+                <section>
                     <h3>Extras</h3>
                     <ul class="no-bullets">
-                        <li>Animations</li>
                         <li>Network conditions</li>
                         <li>Rendering</li>
                         <li>Device Mode</li>
@@ -578,31 +640,20 @@ monitor(sum);
                     </ul>
                 </section>
 
- 
 
                 <section>
-                    <h1>Breakpoints and debugging</h1>
-                    <ul class="no-bullets">
-                        <li>Conditional breakpoints</li>
-                    </ul>
+                    <p>Click the link below for details</p>
+                    <h2>
+                        <a href="https://developers.google.com/web/tools/chrome-devtools/iterate/inspect-styles/shortcuts?hl=en">Keybord Shortcuts</a>
+                    </h2>
+                    <p>Waaaay too much for slides ;)</p>
                 </section>
-
-
-
-                <section>
-                    <h3>Workspaces</h3>
-                </section>
-
-                <section>
-                    <h3>Snippets</h3>
-                </section>
-
 
 
 
 
 <!--
-Breakpoints and debugging
+TODO:
 Network panel ß filtering domain etc.
 
 https://developers.google.com/speed/pagespeed/insights/
