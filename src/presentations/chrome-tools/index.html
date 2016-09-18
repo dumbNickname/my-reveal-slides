@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="/src/css/common.css">
         <link rel="stylesheet" href="/src/presentations/chrome-tools/css/chromeTools.css">
         <link rel="stylesheet" href="/src/presentations/chrome-tools/css/solarized-light.css">
-		<!--<link rel="stylesheet" href="/jspm_packages/github/hakimel/reveal.js@3.3.0/lib/css/zenburn.css">-->
 
     </head>
     <body>
@@ -51,7 +50,7 @@
                 </section>
 
                 <section data-background-transition="slide">
-                    <h1 style="margin-top: -3em;">Elements Panel</h1>
+                    <h3 style="margin-top: -3em;">Elements Panel</h3>
 
                     <div class="replacement">
                         <div class="fragment fade-out" data-fragment-index="0">
@@ -69,7 +68,7 @@
                 </section>
 
                 <section data-background-transition="slide">
-                    <h1 style="margin-top: -3em;">Edit Styles</h1>
+                    <h3 style="margin-top: -3em;">Edit Styles</h3>
 
                     <div class="replacement">
                         <div class="fragment fade-out" data-fragment-index="0">
@@ -594,12 +593,10 @@ monitor(sum);
                 </section>
 
 
-
                 <section data-background-color="var(--secondary-color)">
-                    <h1 style="font-size: 5em; margin-bottom: 0em;" class="flippedColor" >Network</h1>
+                    <h1 style="font-size: 5em;" class="flippedColor" >Network</h1>
                     <h1 style="font-size: 3.3em;" class="primaryColor" >performance</h1>
                 </section>
-
 
 
                 <section>
@@ -631,9 +628,199 @@ monitor(sum);
 
 
                 <section>
+                    <h3>DOMContentLoaded</h3>
+                    <p>(fired when the initial markup of a page has been parsed)</p>
+
+                    <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/domcontentloaded.png">
+                </section>
+
+                <section>
+                    <h3><em>load</em> event</h3>
+                    <p>(fired when a page has fully loaded)</p>
+
+                    <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/load.png">
+                </section>
+
+                <section>
+                    <h3>View details for a single resource</h3>
+                    <ul class="no-bullets">
+                        <li>Headers</li>
+                        <li>Preview</li>
+                        <li>Response</li>
+                        <li class="primaryColor">[Cookies]</li>
+                        <li>[Websocket frames]</li>
+                        <li class="primaryColor">Timing</li>
+                    </ul>
+                </section>
+
+
+                <section>
+                    <h3 style="margin-top: -5em;">Cookies</h3>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/cookies.png">
+                        </div>
+                        <div class="fragment fade-in" data-fragment-index="0">
+
+                            <ul class="no-bullets">
+                                <li><strong class="secondaryColor"> Domain.</strong> The domain the cookie belongs to.</li>
+                                <li><strong class="secondaryColor"> Path.</strong> The URL path the cookie came from.</li>
+                                <li><strong class="secondaryColor"> Expires / Max-Age.</strong> The value of the cookie’s expires or max-age properties.</li>
+                                <li><strong class="secondaryColor"> Size.</strong> The size of the cookie in bytes.</li>
+                                <li><strong class="secondaryColor"> HTTP.</strong> 
+                                    Indicates that the cookie should only be set by 
+                                    the browser in the HTTP request, and cannot be accessed with JavaScript.
+                                </li>
+                                <li><strong class="secondaryColor">Secure.</strong>
+                                    The presence of this attribute indicates that the cookie should 
+                                    only be transmitted over a secure connection.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Emulate network connectivity</h3>
+
+                    <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/throttle-selection.png">
+                </section>
+
+
+                <section data-background-color="var(--secondary-color)">
+                    <h1 style="font-size: 5em;" class="flippedColor" >Resource</h1>
+                    <h1 style="font-size: 6.5em;" class="primaryColor" >timing</h1>
+                </section>
+
+
+                <section>
+                    <!--https://developers.google.com/web/tools/chrome-devtools/profile/network-performance/understanding-resource-timing-->
+                    <h3 style="margin-top: -5em;">Understand resource timing</h3>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/resource-timing-api.png">
+                        </div>
+                        <div style="margin-top: 1.5em;" class="fragment fade-in" data-fragment-index="0">
+                            <div class="fragment fade-out" data-fragment-index="1">
+                                <img style="max-height: 10em;" class="plain" src="/src/presentations/chrome-tools/img/resource-timing-data.png">
+                            </div>
+                        </div>
+                        <div class="fragment fade-in" data-fragment-index="1">
+                            <pre><code data-trim data-noescape>
+performance.getEntriesByType('resource')
+    .filter(item => item.name.includes("chromeTools.css"))
+                            </code></pre>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section>
+                    <h3>Queuing</h3>
+
+                    <ul class="no-bullets">
+                        <li>The request was postponed by the rendering engine because it's considered <strong class="secondaryColor">lower priority than critical resources</strong> (such as scripts/styles). This often happens with images.</li>
+                        <hr>
+                        <li>The request was put on hold to wait for an <strong class="secondaryColor">unavailable TCP socket</strong> that's about to free up.</li>
+                        <hr>
+                        <li>The request was put on hold because the <strong class="secondaryColor">browser only allows six TCP connections per origin on HTTP 1.</strong></li>
+                        <hr>
+                        <li>Time spent making <strong class="secondaryColor">disk cache entries</strong> (typically very quick.)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Stalled/Blocking</h3>
+                    <p>
+                        Time the request spent waiting before it could be sent. 
+                        It can be waiting for any of the reasons described for Queueing. 
+                        Additionally, this time is inclusive of any time spent in proxy negotiation.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>DNS Lookup</h3>
+                    <p>
+                        Time spent performing the DNS lookup. 
+                        Every new domain on a page requires a full roundtrip to do the DNS lookup.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Initial Connection / Connecting</h3>
+                    <p>
+                       Time it took to establish a connection, including TCP handshakes/retries and negotiating a SSL.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>SSL</h3>
+                    <p>
+                        Time spent completing a SSL handshake.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Request Sent / Sending</h3>
+                    <p>
+                        Time spent issuing the network request. Typically a fraction of a millisecond.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 style="margin-top:-3em">Waiting (TTFB)</h3>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <p>
+                                Time spent <strong class="secondaryColor">waiting for the initial response</strong>, 
+                                also known as the <strong class="secondaryColor">Time To First Byte</strong>. 
+                            </p>
+                            <p>
+                                This time captures the latency of a round trip to the server in addition to 
+                                the time spent waiting for the server to deliver the response.
+                            </p>
+                        </div>
+                        <div class="fragment fade-in" data-fragment-index="0">
+                            <p>
+                                Slow Time to First Byte (AKA: lots of green):
+                            </p>
+                            <ul>
+                                <li>Bad network conditions between client and server</li>
+                                <li>A slowly responding server application (might be server performance problems)</li>
+                            </ul>
+                        </div>
+                    
+                </section>
+
+                <section>
+                    <h3 style="margin-top:-3em">Content Download / Downloading</h3>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <p>
+                                Time spent receiving the response data. 
+                            </p>
+                        </div>
+                        <div class="fragment fade-in" data-fragment-index="0">
+                            <p>
+                                Hitting throughput capacity (AKA: lots of blue):
+                            </p>
+                            <p>
+                                If you see lots time spent in the Content Download phases, 
+                                then <strong class="secondaryColor">improving server response or concatenating won’t help</strong>. 
+                                The primary solution is to <strong class="secondaryColor">send fewer bytes</strong>.
+                            </p>
+                        </div>
+                </section>
+
+
+
+                <section>
                     <h3>Extras</h3>
                     <ul class="no-bullets">
-                        <li>Network conditions</li>
                         <li>Rendering</li>
                         <li>Device Mode</li>
                         <li>Search, QuickSource, .. etc</li>
@@ -651,16 +838,10 @@ monitor(sum);
 
 
 
-
 <!--
 TODO:
-Network panel ß filtering domain etc.
 
 https://developers.google.com/speed/pagespeed/insights/
-https://developers.google.com/web/tools/chrome-devtools/profile/network-performance/resource-loading
-
-Request lifecycle
-Network throttling
 
 Performance
 RAIL
