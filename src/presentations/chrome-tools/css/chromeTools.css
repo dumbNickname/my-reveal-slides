@@ -47,7 +47,7 @@ html body {
 }
 
 
-.reveal p, .reveal ul li {
+.reveal p, .reveal ul li, .reveal ol li {
      font-family:  var(--primary-font-family);
 }
 

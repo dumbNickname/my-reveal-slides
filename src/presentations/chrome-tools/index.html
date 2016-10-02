@@ -50,7 +50,7 @@
                 </section>
 
                 <section data-background-transition="slide">
-                    <h3 style="margin-top: -3em;">Elements Panel</h3>
+                    <h3 style="margin-top: -5em;">Elements Panel</h3>
 
                     <div class="replacement">
                         <div class="fragment fade-out" data-fragment-index="0">
@@ -68,7 +68,7 @@
                 </section>
 
                 <section data-background-transition="slide">
-                    <h3 style="margin-top: -3em;">Edit Styles</h3>
+                    <h3 style="margin-top: -5em;">Edit Styles</h3>
 
                     <div class="replacement">
                         <div class="fragment fade-out" data-fragment-index="0">
@@ -611,19 +611,17 @@ monitor(sum);
                                 <li>Controls</li>
                                 <li>Filters</li>
                                 <li>Overview</li>
-                                <li>Requests Table</li>
+                                <li>Requests&nbsp;Table</li>
                                 <li>Summary</li>
                             </ol>
                         </div>
                     </div>
-
                 </section>
 
-
                 <section>
-                    <h3>Capture screenshots when recording</h3>
+                    <h3>HTTP caching</h3>
 
-                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/filmstrip-timeline-overlay.png">
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/http-request.png">
                 </section>
 
 
@@ -716,6 +714,12 @@ performance.getEntriesByType('resource')
                     </div>
                 </section>
 
+
+                <section>
+                    <h3>Capture screenshots when recording</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/filmstrip-timeline-overlay.png">
+                </section>
 
                 <section>
                     <h3>Queuing</h3>
@@ -817,13 +821,321 @@ performance.getEntriesByType('resource')
                 </section>
 
 
+                <section data-background-color="var(--secondary-color)">
+                    <h1 style="font-size: 4.1em;" class="flippedColor" >Things</h1>
+                    <h1 style="font-size: 3.3em;" class="primaryColor" >just got</h1>
+                    <h1 style="font-size: 5em;" class="fallbackColor" >serious!</h1>
+                </section>
+
+                <section data-background-color="var(--secondary-color)">
+                    <h1 style="font-size: 4em" class="flippedColor" >!</h1>
+                    <h1 style="font-size: 4em" class="primaryColor" >Performance</h1>
+                    <h1 style="font-size: 3.3em;" class="fallbackColor" >:D </h1>
+                </section>
+
+
+<!--
+    https://developers.google.com/web/fundamentals/performance/rail
+-->
 
                 <section>
-                    <h3>Extras</h3>
+                    <h3 style="margin-top: -5em;">RAIL Model</h3>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/rail.png">
+                        </div>
+                        <div style="margin-top: 1.5em;" class="fragment fade-in" data-fragment-index="0">
+                            <ol style="font-size: 1.2em;">
+                                <li>Respond to users immediately - acknowledge user input in under 100ms.</li>
+                                <li>Render each frame in under 16ms, aim for consistency. Users notice 'jank'.</li>
+                                <li>Maximize main thread idle time.</li>
+                                <li>Keep users engaged. Deliver interactive content in under 1000ms.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>The pixel pipeline</h3>
+
+                    <img style="max-height: 4em;" class="plain" src="/src/presentations/chrome-tools/img/frame-full.jpg">
+                    <p>Details on <strong><a href="https://csstriggers.com/">CSS triggers</a></strong></p>
+                </section>
+
+                <section>
+                    <h3>Constructing DOM</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/full-process.png">
+                </section>
+
+                <section>
+                    <h3>Constructing CSSOM</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/cssom-tree.png">
+                </section>
+
+                <section>
+                    <h3>Page load schema</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/analysis-dom-css-js-async.png">
+                </section>
+
+                <section>
+                    <h3>Progressive rendering</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/progressive-rendering.png">
+                </section>
+
+                <section>
+                    <h3>Where to start?</h3>
+                    <p>You can always check your page here:</p>
+                    <ul class="no-bullets">
+                        <li><strong><a href="https://developers.google.com/speed/pagespeed/insights/">Google Page Insights</a></strong></li>
+                        <li><strong><a href="https://loadimpact.com/">Load Impact</a></strong></li>
+                        <li><strong><a href="https://tools.pingdom.com/">PingDOM</a></strong></li>
+                        <li><strong>Audits Tab</strong></li>
+                        <li><strong><a href="https://jsperf.com/">JS Perf</a></strong></li>
+                        <li><strong><a href="https://github.com/GoogleChrome/lighthouse">Lighthouse</a></strong></li>
+                        <li><strong><a href="https://github.com/paulirish/automated-chrome-profiling">Automated profiling</a></strong></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 style="margin-top: -5em;">Timeline</h3>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/timeline-annotated.png">
+                        </div>
+                        <div style="margin-top: 2.5em;" class="fragment fade-in" data-fragment-index="0">
+                            <ol>
+                                <li>Basic controls</li>
+                                <li>High level summary</li>
+                                <li>Flame chart</li>
+                                <li>Time frame details</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>High level summary</h3>
+                    <img style="max-height: 4em;" class="plain" src="/src/presentations/chrome-tools/img/overview-annotated.jpg">
+                    
+                    <ul class="no-bullets">
+                        <li>HTML files are <strong><span style="color:hsl(214, 67%, 66%)">blue</span></strong>.</li>
+                        <li>Scripts are <strong><span style="color:hsl(43, 83%, 64%)">yellow</span></strong>.</li>
+                        <li>Stylesheets are <strong><span style="color:hsl(256, 67%, 70%)">purple</span></strong>.</li>
+                        <li>Media files are <strong><span style="color:hsl(109, 33%, 55%)">green</span></strong>.</li>
+                        <li>Miscellaneous resources are <strong><span style="color:hsl(0, 0%, 70%)">grey</span></strong>.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Good practicies</h3>
+                    <ul class="no-bullets">
+                        <li>Keep recordings as short as possible</li>
+                        <li>Avoid unnecessary actions</li>
+                        <li>Isolate the problem</li>
+                        <li>Disable the browser cache</li>
+                        <li>Disable extensions</li>
+                    </ul>
+                </section>
+
+
+
+                <!--
+                    http://bahmutov.calepin.co/improving-angular-web-app-performance-example.html
+                    https://addyosmani.com/blog/taming-the-unicorn-easing-javascript-memory-profiling-in-devtools/
+                    https://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/
+                    http://jankfree.org/
+                -->
+
+                <section>
+                    <h3>Profile Javascript - Flow chart</h3>
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/js-profile.png">
+                </section>
+
+                <section>
+                    <h3 style="margin-top: -5em;">Profile Javascript - CPU Profile</h3>
+
+                    <div class="replacement">
+                        <div class="fragment fade-out" data-fragment-index="0">
+                            <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/cpu-profile.png">
+                        </div>
+                        <div class="fragment fade-in" data-fragment-index="0">
+                            <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/flamechart-cpu-profile.png">
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <section>
+                    <h3>Primes example</h3>
+                    <p>Now check what you learned!</p>
+                    <button id="slow-primes-button">Go: 'try-catch primes'</button>
+                    <button id="no-try-primes-button">Go: 'naive primes'</button>
+                    <button id="reuse-primes-button">Go: 'reused primes'</button>
+                    <!--<button id="webworkers-primes-button">Go: 'web worker primes'</button>-->
+
+                    <script>
+                        document.getElementById('slow-primes-button')
+                            .addEventListener('click', function(ev){
+                                function isPrime(n) {
+                                    try {
+                                        var k;
+                                        for (k = 2; k < n; k += 1) {
+                                            if (n % k === 0) {
+                                                return false;
+                                            }
+                                        }
+                                    } catch (err) {
+                                        console.error(err);
+                                    }
+                                    return true;
+                                }
+                                // finds Nth prime
+                                function findPrime(n) {
+                                    var k = 1, foundPrimes = [];
+                                    while (foundPrimes.length < n) {
+                                        if (isPrime(k)) {
+                                            foundPrimes.push(k);
+                                        }
+                                        k += 1;
+                                    };
+                                    return foundPrimes[foundPrimes.length - 1];
+                                }
+                                function findFirstPrimes(n) {
+                                    var primes = [], k, prime;
+                                    for (k = 0; k < n; k += 1) {
+                                        prime = findPrime(k + 1);
+                                        primes.push(prime);
+                                    }
+                                    return primes;
+                                }
+                                //console.time('Find 1000 primes');
+                                findFirstPrimes(1000);
+                                //console.timeEnd('Find 1000 primes');
+                        });
+                        
+                        
+                        document.getElementById('no-try-primes-button')
+                            .addEventListener('click', function(ev){
+                                function isPrime(n) {
+                                        var k;
+                                        for (k = 2; k < n; k += 1) {
+                                            if (n % k === 0) {
+                                                return false;
+                                            }
+                                        }
+                                    return true;
+                                }
+                                // finds Nth prime
+                                function findPrime(n) {
+                                    var k = 1, foundPrimes = [];
+                                    while (foundPrimes.length < n) {
+                                        if (isPrime(k)) {
+                                            foundPrimes.push(k);
+                                        }
+                                        k += 1;
+                                    };
+                                    return foundPrimes[foundPrimes.length - 1];
+                                }
+                                function findFirstPrimes(n) {
+                                    var primes = [], k, prime;
+                                    for (k = 0; k < n; k += 1) {
+                                        prime = findPrime(k + 1);
+                                        primes.push(prime);
+                                    }
+                                    return primes;
+                                }
+                                //console.time('Find 1000 primes');
+                                findFirstPrimes(1000);
+                                //console.timeEnd('Find 1000 primes');
+                        });
+
+
+                        document.getElementById('reuse-primes-button')
+                            .addEventListener('click', function(ev){
+                                function isPrime(n) {
+                                        var k;
+                                        for (k = 2; k < n; k += 1) {
+                                            if (n % k === 0) {
+                                                return false;
+                                            }
+                                        }
+                                    return true;
+                                }
+                                
+                                function findPrime(n, foundPrimes) {
+                                    var k = foundPrimes.length ? foundPrimes[foundPrimes.length - 1] + 1 : 1;
+                                    while (foundPrimes.length < n) {
+                                        if (isPrime(k)) {
+                                            foundPrimes.push(k);
+                                        }
+                                        k += 1;
+                                    };
+                                    return foundPrimes;
+                                }
+                                function findFirstPrimes(n) {
+                                    var primes = [], k, prime;
+                                    for (k = 0; k < n; k += 1) {
+                                        primes = findPrime(k + 1, primes);
+                                    }
+                                    return primes;
+                                }
+                                //console.time('Find 1000 primes');
+                                findFirstPrimes(1000);
+                                //console.timeEnd('Find 1000 primes');
+                        });
+
+
+                    </script>
+
+                </section>
+
+
+<!--
+    https://developers.google.com/web/tools/chrome-devtools/memory-problems/
+-->
+
+                <section>
+                    <h3>Memory leaks</h3>
+                    <ul class="no-bullets">
+                        <li>Detached DOM elements</li>
+                        <li>Closures</li>
+                        <li>Listeners</li>
+                        <li>iFrames</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Garbage collection</h3>
+
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/dontcontrol.png">
+                </section>
+
+
+
+        <!--
+            https://developers.google.com/web/fundamentals/performance/rendering/
+            https://developers.google.com/web/tools/chrome-devtools/rendering-tools/forced-synchronous-layouts
+        -->
+
+                <section>
+                    <h3>Paint profiling</h3>
+                    <img style="max-height: 12em;" class="plain" src="/src/presentations/chrome-tools/img/paint-profiler.png">
+                </section>
+
+                <section>
+                    <h3>Coming up next</h3>
                     <ul class="no-bullets">
                         <li>Rendering</li>
+                        <li>Layout trashing</li>
+                        <li>FLIP</li>
                         <li>Device Mode</li>
-                        <li>Search, QuickSource, .. etc</li>
                     </ul>
                 </section>
 
@@ -840,11 +1152,7 @@ performance.getEntriesByType('resource')
 
 <!--
 TODO:
-
-https://developers.google.com/speed/pagespeed/insights/
-
-Performance
-RAIL
+Move inlined scripts to modules and use SystemJS
 -->
 
             </div>
