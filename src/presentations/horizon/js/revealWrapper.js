@@ -1,5 +1,6 @@
 import Reveal from 'reveal';
 import classList from 'reveal/lib/js/classList.js';
+import hljs from 'reveal/plugin/highlight/highlight.js';
 import zoom from 'reveal/plugin/zoom-js/zoom.js';
 Reveal.initialize({
     controls: true,
@@ -15,5 +16,6 @@ Reveal.initialize({
     ]
 });
 
+hljs.initHighlighting();
 
 export default Reveal;
