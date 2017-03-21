@@ -17,12 +17,12 @@
   "author": "Bartek Pietrowski",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "2.14.3",
-    "eslint": "3.4.0",
-    "eslint-config-standard": "6.0.0",
-    "eslint-plugin-promise": "2.0.1",
-    "eslint-plugin-standard": "2.0.0",
-    "jspm": "0.16.45"
+    "browser-sync": "2.18.8",
+    "eslint": "3.18.0",
+    "eslint-config-standard": "7.1.0",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-standard": "2.1.1",
+    "jspm": "0.16.53"
   },
   "jspm": {
     "dependencies": {
