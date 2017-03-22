@@ -125,6 +125,7 @@
                 <img style="float:left; height:12em" class="plain" src="./img/horizon.png">
                 <h1 style="font-size: 3.5em; margin-bottom: 0.13em; margin-top: 0.5em;" class="top" >Existing</h1>
                 <h1 style="font-size: 3em;"class="bottom" >solutions</h1>
+                <!-- https://www.youtube.com/watch?v=ajb_IeXcVw4&t=93s -->
             </section>
 
 
@@ -138,10 +139,11 @@
               <div class="replacement">
                   <div style="margin-top: 2em;" class="fragment fade-out" data-fragment-index="0">
                     <ul class="no-bullets">
-                        <li>Some</li>
-                        <li>Points</li>
-                        <li>for</li>
-                        <li>Custom Solutions</li>
+                        <li>Set up database/web server</li>
+                        <li>Deal with CRUD backend code, create endpoints</li>
+                        <li>Authentication/identity</li>
+                        <li>Sessions</li>
+                        <li>Deployment/scaling/monitoring</li>
                     </ul>
                   </div>
                   <div style="margin-top: 0.5em;" class="fragment fade-in" data-fragment-index="0">
@@ -183,9 +185,10 @@
               <div class="replacement">
                   <div style="margin-top: 2em;" class="fragment fade-out" data-fragment-index="0">
                     <ul class="no-bullets">
-                      <li>Tightly coupled</li>
+                      <li>Prescriptive framework</li>
                       <li>No node.js ecosystem</li>
-                      <li>Not easily extendable</li>
+                      <li>Not easily extendable, </li>
+                      <li>Meteor way or no way, monolithic experience</li>
                     </ul>
                   </div>
                   <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
@@ -320,6 +323,44 @@ r.table("users").filter({
                 <img style="height:12em"class="plain" src="./img/WebSockets-Diagram.png">
             </section>
 
+
+            <section>
+
+            <h3 style="margin-top: -1em;">OK, OK ... Show me the Code!</h3>
+            <pre><code style="max-height: 30em" class="javascript">const horizon = Horizon();
+const chat = horizon('chat')
+const app = new Vue({
+  el: '#app',
+  data: {
+    newMessage: '',
+    avatar_url: `http://api.adorable.io/avatars/50/${new Date().getMilliseconds()}.png`,
+    messages: [],
+  },
+
+  methods: {
+    addMessage: function() {
+      var text = this.newMessage.trim();
+      if (text) {
+        chat.store({
+          text: text,
+          datetime: new Date(),
+          url: this.avatar_url,
+        }).subscribe();
+        this.newMessage = '';
+      }
+    },
+    messagesUpdate: function(newMessages) {
+      this.messages = newMessages;
+      console.log(this.messages);
+    },
+  },
+});
+chat.order('datetime', 'descending')
+  .limit(8)
+  .watch()
+  .subscribe(app.messagesUpdate);</code></pre>
+            </section>
+
             <section>
                 <h1>Security</h1>
 
@@ -334,10 +375,12 @@ r.table("users").filter({
             </section>
 
             <section>
-                <h1>Upcoming features</h1>
+                <h1>Limitations</h1>
                 <ul class="no-bullets">
-                    <li>GraphQL</li>
-                    <li>...</li>
+                    <li>There Will Be Bugs (still under development)</li>
+                    <li>Horizon operations are non-atomic</li>
+                    <li>No automatic reconnect to the Horizon server when connection lost</li>
+                    <li>Active subscriptions will not automatically resume after reconnect</li>
                 </ul>
             </section>
 
