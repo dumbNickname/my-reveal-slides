@@ -5,6 +5,7 @@
   --fallback-color: black;
   --bg-color: white;
   --link-color: lightgreen;
+  --text-highlight: #6ca0e8;
 
   --primary-font-family: 'Open Sans Condensed';
   --secondary-font-family: 'Lobster Two';
@@ -32,6 +33,11 @@ html body {
 
 .reveal .slides .tertiaryColor {
     color: var(--tertiary-color);
+}
+
+.reveal .slides .textHighlight {
+    color: var(--text-highlight);
+    font-weight: bold;
 }
 
 .reveal .slides .fallbackColor {
