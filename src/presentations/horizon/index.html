@@ -188,7 +188,7 @@
                       <li>Prescriptive framework</li>
                       <li>No node.js ecosystem</li>
                       <li>Not easily extendable, </li>
-                      <li>Meteor way or no way, monolithic experience</li>
+                      <li><span class="textHighlight">Meteor way or no way</span>, monolithic experience</li>
                     </ul>
                   </div>
                   <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
@@ -208,9 +208,12 @@
               <div class="replacement">
                   <div style="margin-top: 2em;" class="fragment fade-out" data-fragment-index="0">
                     <ul class="no-bullets">
-                      <li>Points</li>
-                      <li>for</li>
-                      <li>Graph Cool</li>
+                      <li>Models and Relations</li>
+                      <li>Permissions</li>
+                      <li>Authentication</li>
+                      <li>Mutation Callbacks</li>
+                      <li>Subscriptions</li>
+                      <li>Client endpoints - Simple and Relay</li>
                     </ul>
                   </div>
                   <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
@@ -240,29 +243,6 @@
                 <img class="plain" src="./img/rethink-vs-firebase.jpg">
             </section>
 
-            <section>
-                <h1>Who uses it?</h1>
-
-                <ul class="no-bullets">
-                    <li>
-                        <img style="height: 2em; vertical-align: middle; margin-left: -1em; margin-right: 1em;" class="plain" src="./img/nasa.png">
-                        <p style="display: inline-block; vertical-align: middle;">Extra-Vehicular Activity - spacesuits</p>
-                    </li>
-                    <li>
-                        <img style="height: 1em; vertical-align: middle; margin-right: 1em;" class="plain" src="./img/platzi.png">
-                        <p style="display: inline-block; vertical-align: middle;">Instant messaging in online courses</p>
-                    </li>
-                    <li>
-                        <img style="height: 1em; vertical-align: middle; margin-right: 1.7em;" class="plain" src="./img/jive.jpg">
-                        <p style="display: inline-block; vertical-align: middle;">Collaboration solutions for business</p>
-                    </li>
-                    <li>
-                        <img style="height: 2em; vertical-align: middle; margin-right: 1.8em;" class="plain" src="./img/nextgxdx.png">
-                        <p style="display: inline-block; vertical-align: middle;">Data collection and curation process</p>
-                    </li>
-                </ul>
-
-            </section>
 
             <section>
                 <h1>SQL</h1>
@@ -284,6 +264,30 @@ r.table("users").filter({
             </section>
 
 
+            <section>
+                <h1>Who uses it?</h1>
+
+                <ul class="no-bullets">
+                    <li>
+                        <img style="height: 2em; vertical-align: middle; margin-left: -1em; margin-right: 1em;" class="plain" src="./img/nasa.png">
+                        <p style="display: inline-block; vertical-align: middle;">Extra-Vehicular Activity - spacesuits</p>
+                    </li>
+                    <li>
+                        <img style="height: 1em; vertical-align: middle; margin-right: 1em;" class="plain" src="./img/platzi.png">
+                        <p style="display: inline-block; vertical-align: middle;">Instant messaging in online courses</p>
+                    </li>
+                    <li>
+                        <img style="height: 1em; vertical-align: middle; margin-right: 1.7em;" class="plain" src="./img/jive.jpg">
+                        <p style="display: inline-block; vertical-align: middle;">Collaboration solutions for business</p>
+                    </li>
+                    <li>
+                        <img style="height: 2em; vertical-align: middle; margin-right: 1.8em;" class="plain" src="./img/nextgxdx.png">
+                        <p style="display: inline-block; vertical-align: middle;">Data collection and curation process</p>
+                    </li>
+                </ul>
+            </section>
+
+
             <section class="topic">
                 <img style="float:left; height:12em" class="plain" src="./img/horizon.png">
                 <h1 style="font-size: 3.9em; margin-bottom: -0.07em; margin-top: 0.2em;" class="top" >Horizon</h1>
@@ -297,9 +301,9 @@ r.table("users").filter({
                 <ul class="no-bullets">
                     <li>Enables building real-time apps <span class="textHighlight">without</span> writing backend code</li>
                     <li><span class="textHighlight">Opensource</span></li>
-                    <li>Is a <span class="textHighlight">part</span> of node.js ecosystem</li>
+                    <li>Is a part of <span class="textHighlight">node.js</span> ecosystem</li>
                     <li>Can be used as <span class="textHighlight">library</span> in node.js app</li>
-                    <li>Scales <span class="textHighlight">linearly</span> with Rethink DB's clustering engine</li>
+                    <li><span class="textHighlight">Scales linearly</span> with Rethink DB's clustering engine</li>
                     <li>Queries return <span class="textHighlight">RxJS Observables</span></li>
                 </ul>
             </section>
@@ -396,9 +400,9 @@ chat.order('datetime', 'descending')
                 <h1>Limitations</h1>
                 <ul class="no-bullets">
                     <li>There Will Be Bugs (still under development)</li>
-                    <li>Horizon operations are non-atomic</li>
-                    <li>No automatic reconnect to the Horizon server when connection lost</li>
-                    <li>Active subscriptions will not automatically resume after reconnect</li>
+                    <li>Horizon operations are <span class="textHighlight">non-atomic</span></li>
+                    <li><span class="textHighlight">No automatic reconnect</span> to the Horizon server when connection lost</li>
+                    <li>Active subscriptions will <span class="textHighlight">not</span> automatically resume after reconnect</li>
                 </ul>
             </section>
 
