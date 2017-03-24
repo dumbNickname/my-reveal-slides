@@ -8,7 +8,7 @@
 
         <link rel="stylesheet" href="../../../src/css/common.css">
         <link rel="stylesheet" href="./css/chromeTools.css">
-        <link rel="stylesheet" href="./css/solarized-light.css">
+        <link rel="stylesheet" href="../../css/solarized-light.css">
 
     </head>
     <body>
@@ -95,18 +95,18 @@
 
                 <section>
                     <h3><kbd>Up</kbd> and <kbd>Down</kbd></h3>
-                    <p>increment and decrement the value by 1,</p> 
+                    <p>increment and decrement the value by 1,</p>
                     <p>(or by .1 if between -1 and 1.)</p>
                 </section>
                 <section>
                     <h3><kbd>Alt</kbd>+<kbd>Up</kbd> and <kbd>Alt</kbd>+<kbd>Down</kbd></h3>
-                    <p>increment and decrement the value by 0.1.</p> 
+                    <p>increment and decrement the value by 0.1.</p>
                     <hr>
                     <h3><kbd>Shift</kbd>+<kbd>Up</kbd> and <kbd>Shift</kbd>+<kbd>Down</kbd></h3>
-                    <p>increment or decrement by 10</p> 
+                    <p>increment or decrement by 10</p>
                     <hr>
                     <h3><kbd>Shift</kbd>+<kbd>Up</kbd> and <kbd>Shift</kbd>+<kbd>Down</kbd></h3>
-                    <p>increment or decrement by 100</p> 
+                    <p>increment or decrement by 100</p>
                 </section>
 
 
@@ -200,7 +200,7 @@ p {
                     <h1>
                          <a style="color:white" href="https://daneden.github.io/animate.css/">Animations</a>
                     </h1>
-                    
+
                     <a href="http://tympanus.net/Tutorials/AnimatedAnimals/">
                         <img class="plain" style="max-height: 10em;" src="https://s3.amazonaws.com/media-p.slid.es/uploads/174419/images/2582937/husky.gif">
                     </a>
@@ -256,7 +256,7 @@ p {
                         <li>DOM Change Breakpoints</li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h3>DOM Breakpoints</h3>
                     <ul class="no-bullets">
@@ -329,7 +329,7 @@ p {
                 <section>
                     <h3>Logging</h3>
                      <pre><code data-trim data-noescape>
-console.log("Node count:", a.childNodes.length, 
+console.log("Node count:", a.childNodes.length,
     "and the current time is:", Date.now());
 
 console.error("Error: %s (%i)", "Server is  not responding", 500);
@@ -420,7 +420,7 @@ console.assert(list.childNodes.length < 500, "Node count is > 500.");
                 <section>
                      <h3>Console log styling example</h3>
                      <pre><code data-trim data-noescape>
-console.log("This will %cbe formatted %cwith different styles", 
+console.log("This will %cbe formatted %cwith different styles",
     "color: green;", "color: blue; font-size: x-large");
                      </code></pre>
                 </section>
@@ -509,7 +509,7 @@ login(users[0]);
                      <pre><code data-trim data-noescape>
 console.trace()
                      </code></pre>
-              
+
                      <h3>A way to notify server about errors in JS</h3>
                      <pre><code data-trim data-noescape>
 window.onerror = function(message, url, line){
@@ -534,9 +534,9 @@ $x('html/body/p') // an array of all paragraphs in the body.
                      <pre><code data-trim data-noescape>
 $('[data-target="inspecting-dom-elements-example"]')
 
-inspect($_) // This takes advantage of the $_ property 
+inspect($_) // This takes advantage of the $_ property
 // to get the output of the last evaluated expression.
-// Use $0 - 4, to access recently selected elements 
+// Use $0 - 4, to access recently selected elements
 // and objects from within the console
                      </code></pre>
                 </section>
@@ -544,7 +544,7 @@ inspect($_) // This takes advantage of the $_ property
                 <section>
                      <h3>Monitor events</h3>
                      <pre><code data-trim data-noescape>
-// if event parameter not provided, all events assumed 
+// if event parameter not provided, all events assumed
 monitorEvents(document.body, 'click');
 
 // array of events also applicable
@@ -578,7 +578,7 @@ monitor(sum);
                             <li>console.<span style="color:red">error</span>/<span style="color:#ffed00">warn</span>/<span style="color:blue">info</span></li>
                             <li>console.<span style="color:blue">assert</li>
                             <li>console - <span style="color:blue">formatting and styling</span></li>
-                        </ul>                        
+                        </ul>
                     </div>
                     <div style="width:50%; float:right">
                         <ul class="no-bullets">
@@ -588,7 +588,7 @@ monitor(sum);
                             <li>console.<span style="color:blue">timeStamp</span></li>
                             <li>console.<span style="color:blue">count</span></li>
                             <li>console.<span style="color:blue">trace</span></li>
-                        </ul>                        
+                        </ul>
                     </div>
                 </section>
 
@@ -666,12 +666,12 @@ monitor(sum);
                                 <li><strong class="secondaryColor"> Path.</strong> The URL path the cookie came from.</li>
                                 <li><strong class="secondaryColor"> Expires / Max-Age.</strong> The value of the cookie’s expires or max-age properties.</li>
                                 <li><strong class="secondaryColor"> Size.</strong> The size of the cookie in bytes.</li>
-                                <li><strong class="secondaryColor"> HTTP.</strong> 
-                                    Indicates that the cookie should only be set by 
+                                <li><strong class="secondaryColor"> HTTP.</strong>
+                                    Indicates that the cookie should only be set by
                                     the browser in the HTTP request, and cannot be accessed with JavaScript.
                                 </li>
                                 <li><strong class="secondaryColor">Secure.</strong>
-                                    The presence of this attribute indicates that the cookie should 
+                                    The presence of this attribute indicates that the cookie should
                                     only be transmitted over a secure connection.
                                 </li>
                             </ul>
@@ -738,8 +738,8 @@ performance.getEntriesByType('resource')
                 <section>
                     <h3>Stalled/Blocking</h3>
                     <p>
-                        Time the request spent waiting before it could be sent. 
-                        It can be waiting for any of the reasons described for Queueing. 
+                        Time the request spent waiting before it could be sent.
+                        It can be waiting for any of the reasons described for Queueing.
                         Additionally, this time is inclusive of any time spent in proxy negotiation.
                     </p>
                 </section>
@@ -747,7 +747,7 @@ performance.getEntriesByType('resource')
                 <section>
                     <h3>DNS Lookup</h3>
                     <p>
-                        Time spent performing the DNS lookup. 
+                        Time spent performing the DNS lookup.
                         Every new domain on a page requires a full roundtrip to do the DNS lookup.
                     </p>
                 </section>
@@ -779,11 +779,11 @@ performance.getEntriesByType('resource')
                     <div class="replacement">
                         <div class="fragment fade-out" data-fragment-index="0">
                             <p>
-                                Time spent <strong class="secondaryColor">waiting for the initial response</strong>, 
-                                also known as the <strong class="secondaryColor">Time To First Byte</strong>. 
+                                Time spent <strong class="secondaryColor">waiting for the initial response</strong>,
+                                also known as the <strong class="secondaryColor">Time To First Byte</strong>.
                             </p>
                             <p>
-                                This time captures the latency of a round trip to the server in addition to 
+                                This time captures the latency of a round trip to the server in addition to
                                 the time spent waiting for the server to deliver the response.
                             </p>
                         </div>
@@ -796,7 +796,7 @@ performance.getEntriesByType('resource')
                                 <li>A slowly responding server application (might be server performance problems)</li>
                             </ul>
                         </div>
-                    
+
                 </section>
 
                 <section>
@@ -805,7 +805,7 @@ performance.getEntriesByType('resource')
                     <div class="replacement">
                         <div class="fragment fade-out" data-fragment-index="0">
                             <p>
-                                Time spent receiving the response data. 
+                                Time spent receiving the response data.
                             </p>
                         </div>
                         <div class="fragment fade-in" data-fragment-index="0">
@@ -813,8 +813,8 @@ performance.getEntriesByType('resource')
                                 Hitting throughput capacity (AKA: lots of blue):
                             </p>
                             <p>
-                                If you see lots time spent in the Content Download phases, 
-                                then <strong class="secondaryColor">improving server response or concatenating won’t help</strong>. 
+                                If you see lots time spent in the Content Download phases,
+                                then <strong class="secondaryColor">improving server response or concatenating won’t help</strong>.
                                 The primary solution is to <strong class="secondaryColor">send fewer bytes</strong>.
                             </p>
                         </div>
@@ -922,7 +922,7 @@ performance.getEntriesByType('resource')
                 <section>
                     <h3>High level summary</h3>
                     <img style="max-height: 4em;" class="plain" src="./img/overview-annotated.jpg">
-                    
+
                     <ul class="no-bullets">
                         <li>HTML files are <strong><span style="color:hsl(214, 67%, 66%)">blue</span></strong>.</li>
                         <li>Scripts are <strong><span style="color:hsl(43, 83%, 64%)">yellow</span></strong>.</li>
@@ -1019,8 +1019,8 @@ performance.getEntriesByType('resource')
                                 findFirstPrimes(1000);
                                 //console.timeEnd('Find 1000 primes');
                         });
-                        
-                        
+
+
                         document.getElementById('no-try-primes-button')
                             .addEventListener('click', function(ev){
                                 function isPrime(n) {
@@ -1068,7 +1068,7 @@ performance.getEntriesByType('resource')
                                         }
                                     return true;
                                 }
-                                
+
                                 function findPrime(n, foundPrimes) {
                                     var k = foundPrimes.length ? foundPrimes[foundPrimes.length - 1] + 1 : 1;
                                     while (foundPrimes.length < n) {
