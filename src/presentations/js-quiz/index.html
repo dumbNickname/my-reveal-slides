@@ -1,0 +1,235 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Handlee|Nothing+You+Could+Do|Open+Sans+Condensed:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/theme/white.css">
+    <link rel="stylesheet" href="../../../src/css/common.css">
+    <link rel="stylesheet" href="../../css/solarized-light.css">
+    <link rel="stylesheet" href="css/js-quiz.css">
+
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/print/pdf.css' : './css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h1 class="fallbackColor"> Javascript Quiz </h1>
+                <img class="plain" src="./img/rethink-race.png">
+                <!-- Image taken from: https://rethinkdb.com/assets/images/posts/2016-09-06-powershell-banner.png -->
+            </section>
+
+            <section>
+                <h1 style="color: #2aa198">
+                    <span >Difference</span>
+                </h1>
+                <h5 class="fallbackColor">
+                    between
+                </h5>
+                <h5 style="color: #2aa198">
+                    <i>==</i> <span style="color: black">/</span> <i>===</i>
+                </h5>
+
+                <pre><code class="javascript">
+                                  3 == 3
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">true</span></p>
+                </div>
+                <pre><code class="javascript">
+                                  3 === 3
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">true</span></p>
+                </div>
+            </section>
+
+            <section>
+                <h1 style="color: #2aa198">
+                    <span >Difference</span>
+                </h1>
+                <h5 class="fallbackColor">
+                    between
+                </h5>
+                <h5 style="color: #2aa198">
+                    <i>==</i> <span style="color: black">/</span> <i>===</i>
+                </h5>
+
+                <pre><code class="javascript">
+                                '3' == 3
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">true</span></p>
+                </div>
+                <pre><code class="javascript">
+                                '3' === 3
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">false</span></p>
+                </div>
+            </section>
+
+
+            <section>
+                <h1 style="color: #2aa198">
+                    <span >Difference</span>
+                </h1>
+                <h5 class="fallbackColor">
+                    between
+                </h5>
+                <h5 style="color: #2aa198">
+                    <i>==</i> <span style="color: black">/</span> <i>===</i>
+                </h5>
+
+                <pre><code class="javascript">
+                            null == undefined
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">true</span></p>
+                </div>
+                <pre><code class="javascript">
+                                0 == ''
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">true</span></p>
+                </div>
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    <span >What is the</span>
+                </h1>
+                <h5 style="color: #2aa198">
+                    RESULT
+                </h5>
+                <h5 class="fallbackColor">
+                    of
+                </h5>
+
+                <pre><code class="javascript">
+                                '1' + 2 + 3
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">'123'</span></p>
+                </div>
+                <pre><code class="javascript">
+                                2 + true
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">3</span></p>
+                </div>
+            </section>
+            <section>
+                <h1 class="fallbackColor">
+                    <span >What is the</span>
+                </h1>
+                <h5 style="color: #2aa198">
+                    OUTPUT
+                </h5>
+                <h5 class="fallbackColor">
+                    of
+                </h5>
+
+                <pre><code class="javascript">
+var output = (function(x){
+    delete x;
+    return x;
+})(0);
+
+console.log(output);
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">0</span></p>
+                </div>
+                <pre><code class="javascript">
+                    (!+[]+[]+![]).length
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">9</span></p>
+                </div>
+            </section>
+
+            <section>
+                <h5 class="fallbackColor">
+                    <span style="color: #2aa198; font-size: 2em">true</span> <span style="vertical-align: 10px;
+    margin: 0px 0.3em 0px 0.3em;">or</span> <span style="color: #2aa198; font-size: 2em">false</span><span style="font-size: 2em">?</span>
+                </h5>
+
+                <pre><code class="javascript">
+                            0.1 + 0.2 === 0.3
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">false</span></p>
+                </div>
+            </section>
+
+            <section>
+                <h1 style="color: #2aa198">
+                    Promises
+                </h1>
+                    <pre><code class="javascript">
+var promise = Promise.resolve('Star wars: ');
+
+promise.then(function (movie) {
+    console.info('Episodes from the first trilogy: ');
+    return movie + 'Attack of the Clones ';
+}).then(function (movie) {
+    console.info(movie + 'followed by Revenge of the Sith ');
+});
+
+promise.then(function (movie) {
+    console.info(movie + 'The Phantom Menace ');
+});
+                    </code></pre>
+            </section>
+
+            <section>
+                <h1 style="color: #2aa198">
+                    Promises
+                </h1>
+                    <pre><code class="javascript">
+var promise = Promise.resolve('Star wars: ');
+
+promise.then(function (movie) {
+    console.info('Episodes from the first trilogy: ');  // 1
+    return movie + 'Attack of the Clones ';
+}).then(function (movie) {
+    console.info(movie + 'followed by Revenge of the Sith ');         // 3
+});
+
+promise.then(function (movie) {
+    console.info(movie + 'The Phantom Menace ');           // 2
+                    </code></pre>
+            </section>
+
+            <section>
+                <h1 style="color: #2aa198">
+                    This
+                </h1>
+
+
+            </section>
+
+
+
+        </div>
+    </div>
+
+    <script src="../../../jspm_packages/system.js"></script>
+    <script src="./config.js"></script>
+    <script>
+        System.import('./js/main');
+    </script>
+</body>
+
+</html>
