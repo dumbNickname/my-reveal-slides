@@ -41,31 +41,6 @@
                 </h5>
 
                 <pre><code class="javascript">
-                                  3 == 3
-                </code></pre>
-                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
-                    <p>Result: <span style="color: #2aa198">true</span></p>
-                </div>
-                <pre><code class="javascript">
-                                  3 === 3
-                </code></pre>
-                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
-                    <p>Result: <span style="color: #2aa198">true</span></p>
-                </div>
-            </section>
-
-            <section>
-                <h1 style="color: #2aa198">
-                    <span >Difference</span>
-                </h1>
-                <h5 class="fallbackColor">
-                    between
-                </h5>
-                <h5 style="color: #2aa198">
-                    <i>==</i> <span style="color: black">/</span> <i>===</i>
-                </h5>
-
-                <pre><code class="javascript">
                                 '3' == 3
                 </code></pre>
                 <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
@@ -117,18 +92,150 @@
                 </h5>
 
                 <pre><code class="javascript">
-                                '1' + 2 + 3
+                                1 + '2' + 3
                 </code></pre>
                 <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
                     <p>Result: <span style="color: #2aa198">'123'</span></p>
                 </div>
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    <span >What is the</span>
+                </h1>
+                <h5 style="color: #2aa198">
+                    RESULT
+                </h5>
+                <h5 class="fallbackColor">
+                    of
+                </h5>
+
                 <pre><code class="javascript">
-                                2 + true
+                                1 + +'2' + 3
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">6</span></p>
+                </div>
+
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    <span >What is the</span>
+                </h1>
+                <h5 style="color: #2aa198">
+                    RESULT
+                </h5>
+                <h5 class="fallbackColor">
+                    of
+                </h5>
+
+                <pre><code class="javascript">
+                    2 + true
                 </code></pre>
                 <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
                     <p>Result: <span style="color: #2aa198">3</span></p>
                 </div>
             </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    <span >What is the</span>
+                </h1>
+                <h5 style="color: #2aa198">
+                    RESULT
+                </h5>
+                <h5 class="fallbackColor">
+                    of
+                </h5>
+
+                <pre><code class="javascript">
+var sub = function(x,y) {
+   return x-y;
+}
+
+sub(4, '1')
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">3</span></p>
+                </div>
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    <span >What is the</span>
+                </h1>
+                <h5 style="color: #2aa198">
+                    RESULT
+                </h5>
+                <h5 class="fallbackColor">
+                    of
+                </h5>
+
+                <pre><code class="javascript">
+                    for(var i = 0; i < 10; i++) {
+                        setTimeout(function() {
+                            console.log(i);
+                        }, 10);
+                    }
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">10 printed 10 times</span></p>
+                </div>
+
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    <span >What is the</span>
+                </h1>
+                <h5 style="color: #2aa198">
+                    RESULT
+                </h5>
+                <h5 class="fallbackColor">
+                    of
+                </h5>
+
+                <pre><code class="javascript">
+                    var myVar = 'global';
+                    var myFunction = function () {
+                        console.log(myVar);
+                        var myVar = 'local';
+                        console.log(myVar);
+                    };
+                    myFunction();
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">undefined, 'local'</span></p>
+                </div>
+
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    <span >What is the</span>
+                </h1>
+                <h5 style="color: #2aa198">
+                    RESULT
+                </h5>
+                <h5 class="fallbackColor">
+                    of
+                </h5>
+
+                <pre><code class="javascript">
+var val = 1;
+var modify = function(el) {
+    el += 1;
+    console.log(el)
+};
+modify(val);
+console.log(val)
+                </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">2;1</span></p>
+                </div>
+            </section>
+
             <section>
                 <h1 class="fallbackColor">
                     <span >What is the</span>
@@ -150,12 +257,6 @@ console.log(output);
                 </code></pre>
                 <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
                     <p>Result: <span style="color: #2aa198">0</span></p>
-                </div>
-                <pre><code class="javascript">
-                    (!+[]+[]+![]).length
-                </code></pre>
-                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
-                    <p>Result: <span style="color: #2aa198">9</span></p>
                 </div>
             </section>
 
@@ -216,10 +317,61 @@ promise.then(function (movie) {
                 <h1 style="color: #2aa198">
                     This
                 </h1>
+ <pre><code class="javascript">
+     this.x = 9;
+     var module = {
+     x: 81,
+     getX: function() { return this.x; }
+     };
 
+     module.getX(); // 1
+
+     var retrieveX = module.getX;
+     retrieveX(); // 2
+ </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">1: 81; 2: 9</span></p>
+                </div>
 
             </section>
 
+            <section>
+                <h1 style="color: #2aa198">
+                    This
+                </h1>
+ <pre><code class="javascript">
+     var inner = function() {
+     this.x = 3;
+     console.log(this.x);
+     var innerInner = function() {
+     console.log(this.x)
+     }.bind(this)
+
+     innerInner()
+     }
+     inner.prototype.outer = function() {
+     console.log(this.x)
+     var outerInner = function() {
+     console.log(this.x)
+     }
+     outerInner()
+     }
+     new inner().outer()
+ </code></pre>
+                <div style="margin-top: 0em;" class="fragment fade-in" data-fragment-index="0">
+                    <p>Result: <span style="color: #2aa198">3; 3; 3</span></p>
+                </div>
+
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    <span >Return true to win!</span>
+                </h1>
+
+                <a href="https://alf.nu/ReturnTrue">return true</a>
+
+            </section>
 
 
         </div>
