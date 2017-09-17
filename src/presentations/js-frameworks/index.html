@@ -1,0 +1,287 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Handlee|Nothing+You+Could+Do|Open+Sans+Condensed:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/theme/white.css">
+    <link rel="stylesheet" href="../../../src/css/common.css">
+    <link rel="stylesheet" href="../../css/solarized-light.css">
+    <link rel="stylesheet" href="./css/js-frameworks.css">
+
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? './css/print/pdf.css' : './css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+
+                <h1>
+                    <span style="color: #35495e">JS Frameworks</span><span style="display:block; color: #35495e">overview</span>
+                </h1>
+                <img style="width: 50%" class="plain" src="./img/frameworks.png">
+                <!-- Image taken from: https://cdn-images-1.medium.com/max/618/0*9N9J9YiGJrISLIBP.png -->
+
+                <p style="margin-left: 10em; margin-top: -3.3em" class="author">
+                    <span style="display:block">by</span>
+                    <span style="display:block">Ewa Nestorowicz</span>
+                </p>
+            </section>
+
+            <section data-background-color="var(--secondary-color)">
+                <h1 class="fallbackColor">
+                    Agenda
+                </h1>
+
+                <ul style="margin-left: 4em; margin-top: 2em;" class="no-bullets">
+                    <ul>
+                        <li>Angular</li>
+                        <li>ReactJS</li>
+                        <li>Vue.js</li>
+                        <li>Polymer</li>
+                        <li>Aurelia</li>
+                    </ul>
+                </ul>
+                <img class="plain" style="float: right; margin-right: 4em;" src="./img/agenda.jpg">
+            </section>
+
+            <section data-background-color="var(--tertiary-color)">
+                <h1 class="flippedColor">
+                    Your experience
+                    <span style="color:#10e0ff">?</span>
+                </h1>
+            </section>
+
+             <section data-background-color="var(--tertiary-color)">
+                <p class="flippedColor quotation">
+                    <span>"There is a point in your programming career, when you realise that there isn’t a best tool"</span>
+                </p>
+            </section>
+
+            <section>
+                <h1 style="text-transform: none; color: black">Angular</h1>
+                <h5 style="text-transform: none; color: black">overview</h1>
+                <ul class="no-bullets">
+                    <ul>
+                        <li>introduced by <strong>Google</strong></li>
+                        <li><strong>open source</strong></li>
+                        <li>released in <strong>September 2016</strong></li>
+                        <li>current version is <strong>4</strong> (released in March 2017)</li>
+                        <li><strong>v3</strong> was skipped to avoid semantic version issues</li>
+                        <li><strong>MVC</strong></li>
+                    </ul>
+                </ul>
+                <img style="margin-top: -0.8em" class="plain" src="./img/angular.png">
+                <!-- Image taken from: https://avatars2.githubusercontent.com/u/139426?v=4&s=400 -->
+                
+            </section>
+
+            <section data-background-color="#20b5c1">
+                <h1 style="text-transform: none; color: black">Angular</h1>
+                <h5 style="text-transform: none; color: black">pros & cons</h1>
+                <ul class="no-bullets">
+                    <ul>
+                        <li>focus on <strong>components</strong></li>
+                        <li><strong>TypeScript</strong></li>
+                        <li><strong>event handling </strong>capabilities</li>
+                        <li><strong>Angular CLI</strong></li>
+                        <li>easy to <strong>scale</strong></li>
+                        <li>better <strong>performance</strong></li>
+                    </ul>
+                </ul>
+               
+                 <ul class="no-bullets">
+                    <ul>
+                        <li><strong>regular DOM</strong></li>
+                        <li><strong>complex </strong> - may be difficult to learn</li>
+                        <li><strong>performance problems </strong>on mobile</li>
+                        </br></br></br>
+                    </ul>
+                </ul>
+                        <img style="margin-top: -1.6em; float: right" class="plain" src="./img/angular_typescript.png">
+                <!-- Image taken from: https://www.rethinkdb.com/assets/images/posts/2016-01-29-angular-typescript-banner.png -->
+            </section>
+
+             <section>
+                <h1 style="text-transform: none; color: black">ReactJS</h1>
+                <h5 style="text-transform: none; color: black">overview</h1>
+                <ul class="no-bullets">
+                    <ul>
+                        <li>introduced by <strong>Facebook</strong></li>
+                        <li><strong>open source</strong></li>
+                        <li>released in <strong>May 2013</strong></li>
+                        <li>current version is <strong>15.6.1</strong></li>
+                        <li><strong>V </strong> layer in the <strong>MVW </strong>models</li>
+                    </ul>
+                </ul>
+                <img style="margin-top: -0.8em; float: right; width: 45%;" class="plain" src="./img/react.png">
+                <!-- Image taken from: https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png -->
+            </section>
+
+            <section data-background-color="#222222">
+                <h1 style="text-transform: none; color: white; display: inline;">ReactJS</h1>
+                <img  style="height: 3em; margin-bottom: -0.5em;" class="plain" src="./img/react-js.jpg"> 
+                <h5 style="text-transform: none; color: white">pros & cons</h1>
+                
+                <!-- Image taken from:http://media02.hongkiat.com/thumbs/640x410/react-js-web-developers-toolkit.jpg -->
+                <ul class="no-bullets">
+                    <ul>
+                        <li>focus on <strong>components</strong></li>
+                        <li><strong>JSX</strong></li>
+                        <li><strong>virtual DOM</strong></li>
+                        <li>high <strong>performance</strong></li>
+                        <li><strong>light-weighted</strong></li>
+                        <li><strong>redux & flux </strong>architecture</li>
+                    </ul>
+                </ul>
+               
+                 <ul class="no-bullets">
+                    <ul>
+                        <li>problems with other libraries<strong></br>DOM manipulation</strong></li>
+                        <li>no <strong>router</strong></li>
+                        </br></br></br>
+                    
+                    </ul>
+                </ul>
+               
+            </section>
+
+            <section>
+                <h1 style="text-transform: none; color: black">Vue.js</h1>
+                <h5 style="text-transform: none; color: black">overview</h1>
+                <ul class="no-bullets">
+                    <ul>
+                        <li>introduced by <strong>Evan You</strong></li>
+                        <li><strong>open source</strong></li>
+                        <li>released in <strong>February 2014</strong></li>
+                        <li>current version is <strong>2.4.4</strong> </br> (released in September 2017)</li>
+                    </ul>
+                </ul>
+                <img style="margin-top: -0.8em; width: 20%" class="plain" src="./img/vue.png">
+                <!-- Image taken from: https://vuejs.org/images/logo.png -->
+                
+            </section>
+
+            <section >
+                <h1 style="text-transform: none; color: black">Vue.js</h1>
+                <h5 style="text-transform: none; color: black">pros & cons</h1>
+                 <ul class="no-bullets">
+                    <ul>
+                        <li><strong>small </strong>size</li>
+                        <li><strong>virtual DOM</strong></li>
+                        <li><strong>flexibility</strong></li>
+                        <li><strong>simplicity in syntax </br> & project setup</strong></li>
+                        <li><strong>fast</strong> rendering</li>                   
+                    </ul>
+                </ul>
+               
+                <ul class="no-bullets">
+                    <ul>
+                        <li>language <strong>barrier</strong></li>
+                        <li><strong>closed </strong>community development</li>
+                        </br></br></br></br>
+                    </ul>
+                </ul>
+                
+                <img style="margin-top: -5em; float: right" class="plain" src="./img/vue_cover.png">
+                <!-- Image taken from: https://cdn-images-1.medium.com/max/1600/1*VvT44eH8rT8P35cKGTxyOw.png -->
+            </section>
+
+            <section>
+                <h1 style="text-transform: none; color: black">Polymer</h1>
+                <h5 style="text-transform: none; color: black">overview</h1>
+                <ul class="no-bullets">
+                    <ul>
+                        <li>introduced by <strong>Google</strong></li>
+                        <li><strong>open source</strong></li>
+                        <li>released in <strong>May 2015</strong></li>
+                        <li>current version is <strong>2.0.2</strong></li>
+                        <li><strong>cross-browser </strong>support for HTML5 web components</li>
+                    </ul>
+                </ul>
+                <img style="margin-top: -0.1em; float: right; width: 25%;" class="plain" src="./img/polymer.png">
+                <!-- Image taken from: https://www.polymer-project.org/images/logos/p-logo.png -->
+            </section>
+
+             <section >
+                <h1 style="text-transform: none; color: black">Polymer</h1>
+                <h5 style="text-transform: none; color: black">pros & cons</h1>
+                 <ul class="no-bullets">
+                    <ul>
+                        <li><strong>#UseThePlatform</strong></li>
+                        <li><strong>shadow DOM</strong></li>
+                        <li><strong>PWA, Web Components</strong></li>
+                        </br></br></br>                  
+                    </ul>
+                </ul>
+               
+                <ul class="no-bullets">
+                    <ul>
+                        <li><strong>no </strong>server side rendering</li>
+                        <li>dependencies<strong> errors</strong></li>
+                        </br></br></br></br>
+                    </ul>
+                </ul>
+            </section>
+
+            <section>
+                <h1 style="text-transform: none; color: black">Aurelia</h1>
+                <h5 style="text-transform: none; color: black">overview</h1>
+                <ul class="no-bullets">
+                    <ul>
+                        <li>introduced by <strong>EisenbergEffect, Durandal Inc.</strong></li>
+                        <li><strong>open source</strong></li>
+                        <li>released in <strong>June 2016</strong></li>
+                        <li>current version is <strong>1.1.4</strong></li>
+                    </ul>
+                </ul>
+                <img style="margin-top: -0.1em; float: right; width: 25%;" class="plain" src="./img/aurelia.png">
+                <!-- Image taken from: http://blog.aurelia.io/content/images/2016/06/aurelia-icon-512x512.png -->
+            </section>
+
+            <section data-background-color="#f5f7f9">
+                <h1 style="text-transform: none; color: black">Aurelia</h1>
+                <h5 style="text-transform: none; color: black">pros & cons</h1>
+                 <ul class="no-bullets">
+                    <ul>
+                        <li><strong>clean & simple - plain JS</strong></li>
+                        <li>focused on <strong>Web Standards</strong></li>
+                        <li>good <strong>integration</strong> with others</li>
+                        <li><strong>easy </strong>to work with</li>
+                        <li>ES5, ES6, TS,... <strong> support</strong></li>
+                        <li><strong>commercial & enterprise support</strong></li>                  
+                    </ul>
+                </ul>
+               
+                <ul class="no-bullets">
+                    <ul>
+                        <li><strong>small </strong>community</li>
+                        </br></br></br></br></br>
+                    </ul>
+                </ul>
+
+                <img style="margin-top: -7em; float: right; width: 45%;" class="plain" src="./img/aurelia_cover.png">
+                <!-- Image taken from: https://cdn-images-1.medium.com/max/1600/1*MCQBX1gs5MBn9gh_L96__g.png -->
+            </section>
+
+            
+        </div>
+    </div>
+
+    <script src="../../../jspm_packages/system.js"></script>
+    <script src="./config.js"></script>
+    <script>
+        System.import('./js/main');
+    </script>
+</body>
+
+</html>
