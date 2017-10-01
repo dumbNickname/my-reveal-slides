@@ -1,0 +1,178 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Handlee|Nothing+You+Could+Do|Open+Sans+Condensed:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/theme/white.css">
+    <link rel="stylesheet" href="../../../src/css/common.css">
+    <link rel="stylesheet" href="../../css/solarized-light.css">
+    <link rel="stylesheet" href="css/u2f.css">
+
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? './css/print/pdf.css' : './css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section data-background-color="#f6f7f7">
+                <h1>
+                    <span class="fallbackColor">One token</span><span class="fallbackColor" style="display:block">... to rule them all!</span>
+                </h1>
+                <img class="plain" src="./img/u2f.png">
+                <!-- Image taken from: https://raw.githubusercontent.com/clems4ever/authelia/master/images/u2f.png -->
+                <p style="margin-left: 16em; margin-top:-1em" class="author">
+                    <span style="display:block">by</span>
+                    <span style="display:block">Dominik Dzienia</span>
+                    <span>Ewa Nestorowicz</span>
+                </p>
+            </section>
+
+            <section data-background-color="#cacbcc">
+                <h1 class="fallbackColor">
+                    Agenda
+                </h1>
+
+                <ul class="no-bullets">
+                    <li><strong>Short overview</strong></li>
+                    <li><strong>Existing solutions</strong></li>
+                    <li><strong>How does it work?</strong></li>
+                    <ul>
+                        <li>Registration</li>
+                        <li>Authentication</li>
+                    </ul>
+                    <li style="text-align: center; margin-top: 1em"><strong>Demo!</strong></li>
+                </ul>
+                <img class="plain" style="float: right; width: 50%" src="./img/tokens.jpg">
+                <!-- Image taken from: https://mobileidworld.com/assets/56681790_thumbnail2-e1434658420303.jpg -->
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">Short overview</h1>
+                <ul>
+                    <li>New open <strong>authentication standard</strong></li>
+                    <li>Simple, secure, <strong>scalable 2FA</strong></li>
+                </ul>
+                <img class="plain" src="./img/fido.png">
+                <!-- Image taken from: http://www.pandasecurity.com/mediacenter/src/uploads/2015/08/pen.png -->
+            </section>
+
+            <section data-background-color="#60c2d1">
+                <h1 class="fallbackColor">U2F as multifactorial authentication</h1>
+                <ul class="no-bullets" style="margin-top: 2em;">
+                    <li><strong>What I <span style="color: white">know: </span> </strong>login and password</li>
+                    <li><strong>What I <span style="color: white">own: </span></strong>U2F hardware token</li>
+                    <li><strong>What I <span style="color: white">am: </span></strong>fingerprint, retina, voice recognition</li>
+                </ul>
+                <img class="plain" style="float: right; width: 30%" src="./img/security.png">
+                <!-- Image taken from: https://image.freepik.com/free-vector/security-background-with-items-and-connected-lines_23-2147628515.jpg -->
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    Existing solutions
+                </h1>
+                <div>
+                    <div style="float: left;padding: 20px 50px 20px 190px;">
+                        <img class="plain" style=" width: 150px; height: 150px;" src="./img/smart_card.png">
+                        <p>Smart card</p>
+                    </div>
+
+                    <div style="float: left; padding: 20px 50px 20px 20px;">
+                        <img class="plain" style=" width: 150px; height: 150px;" src="./img/sms.png">
+                        <p>SMS</p>
+                    </div>
+
+                    <div style="float: left; padding: 20px 50px 20px 20px;">
+                        <img class="plain" style=" width: 150px; height: 150px;" src="./img/otp.png">
+                        <p>OTP devices</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                    Why is it different?
+                </h1>
+                <ul class="coloured-bullets">
+                    <li><strong>Simple</strong></li>
+                    <ul class="coloured-bullets">
+                        <li>For registration/authentication - <strong>touch</strong></li>
+                        <li><strong>No drivers </strong> needed to be installed</li>
+                    </ul>
+                    <li><strong>Secure</strong></li>
+                    <ul class="coloured-bullets">
+                        <li><strong>Public key cryptography</strong></li>
+                        <li><strong>Protection </strong> phishing, man-in-the-middle</li>
+                    </ul>
+                    <li><strong>One device, many services</strong></li>
+                    <ul class="coloured-bullets">
+                        <li>Privacy <strong>protected</strong></li>
+                        <li><strong>No secrets shared </strong> - between service providers </li>
+                    </ul>
+                </ul>
+                <img class="plain" style="margin-left: 2em; margin-bottom: 2em;" src="./img/secure-cluster.png">
+                <!-- Image taken from: https://rethinkdb.com/assets/images/docs/api_illustrations/secure-cluster.png -->
+            </section>
+
+             <section>
+                <h1 class="fallbackColor">
+                   How does it work?
+                </h1>
+            
+                <img class="plain" src="./img/mobile.png">
+                <!-- Image taken from: https://www.yubico.com/wp-content/uploads/2014/10/Slider-U2F-02.png -->
+
+                <img class="plain" style="margin-top: -1em;" src="./img/usb.png">
+                <!-- Image taken from: https://www.yubico.com/wp-content/uploads/2014/10/Slider-U2F-03.png -->
+            </section>
+
+            
+             <section>
+                <h1 class="fallbackColor">
+                  Registration & Authentication
+                </h1>
+                <img class="plain" style="margin-top: -1em;" src="./img/case-study.jpg">
+                <!-- Image taken from: https://image.slidesharecdn.com/presentation-u2fcasestudybyyubico-160324164642/95/u2f-case-study-examining-the-u2f-paradox-15-638.jpg?cb=1458838250 -->
+            </section>
+
+              <section>
+                <h1 class="fallbackColor">
+                  U2F entities
+                </h1>
+                <img class="plain" src="./img/u2f_entities.png">
+            </section>
+
+            <section>
+                <h1 class="fallbackColor">
+                  Challenges
+                </h1>
+            </section>
+
+             <section data-background-color="#274c5e">
+                <h1 style="color: white">
+                  Demo time!
+                </h1>
+                <img class="plain" style="margin-top: -1em;" src="./img/demo.jpg">
+                <!-- Image taken from: https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAS0AAAAJDA1NWVhYzFmLTZlYzctNGE4Yi04M2QxLTExZmYzOGM4Y2QwZQ.jpg -->
+            </section>
+
+        </div>
+    </div>
+
+    <script src="../../../jspm_packages/system.js"></script>
+    <script src="./config.js"></script>
+    <script>
+        System.import('./js/main');
+    </script>
+</body>
+
+</html>
