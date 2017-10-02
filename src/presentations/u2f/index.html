@@ -65,7 +65,7 @@
                 <!-- Image taken from: http://www.pandasecurity.com/mediacenter/src/uploads/2015/08/pen.png -->
             </section>
 
-            <section data-background-color="#60c2d1">
+            <section data-background-color="#01c2d1">
                 <h1 class="fallbackColor">U2F as multifactorial authentication</h1>
                 <ul class="no-bullets" style="margin-top: 2em;">
                     <li><strong>What I <span style="color: white">know: </span> </strong>login and password</li>
@@ -153,8 +153,22 @@
 
             <section>
                 <h1 class="fallbackColor">
-                  Challenges
+                  Challenges - Mobile
                 </h1>
+                 <ul class="coloured-bullets">
+                    <li><strong>Many technological layers</strong></li>
+                    <ul class="coloured-bullets">
+                        <li><stron>NFC and Bluetooth</stron> hardware transports</li>
+                        <li><strong>Low level </strong> 7816-4 APDU protocol (Smart Card)</li>
+                        <li><strong>High level </strong> U2F protocol</li>
+                    </ul>
+                    <li>Advanced cryptography</li>
+                    <ul class="coloured-bullets">
+                        <li><strong>ECDSA </strong>- Elliptic Curve signatures verification</li>
+                        <li><strong>Low level </strong> / X.509 certificate parsing</li>
+                        <li><strong>Lack of full support</strong> on Android</li>
+                    </ul>
+                </ul>
             </section>
 
              <section data-background-color="#274c5e">
