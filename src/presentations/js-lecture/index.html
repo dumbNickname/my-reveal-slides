@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Handlee|Nothing+You+Could+Do|Open+Sans+Condensed:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/theme/white.css">
+    <link rel="stylesheet" href="../../../src/css/common.css">
+    <link rel="stylesheet" href="../../css/solarized-light.css">
+    <link rel="stylesheet" href="css/js-lecture.css">
+
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? './css/print/pdf.css' : './css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h1>
+                    <span class="fallbackColor">JavaScript*</span>
+                </h1>
+                <h5><span style="color: #4d4e4f" >* with HTML & CSS introduction </span></h5>
+                <img class="plain" style="height: 50%" src="./img/js.jpg">
+                <!-- Image taken from: https://i.pinimg.com/originals/68/38/43/683843d451f6eabfa2eb14f6d50a9b7a.jpg -->
+                <p style="margin-left: 16em; margin-top:-0.5em" class="author">
+                    <span style="display:block">by</span>
+                    <span>Ewa Nestorowicz</span>
+                </p>
+            </section>
+
+            <section data-background-color="#314955">
+                <h1 style="color: white">
+                    Agenda
+                </h1>
+
+                <ul style="color: white" class="no-bullets">
+                    <li><strong>HTML & CSS introduction</strong></li>
+                    <li><strong>JavaScript</strong></li>
+                    <ul>
+                        <li>Language basics</li>
+                        <li>Scope</li>
+                        <li>Closure</li>
+                        <li>Module pattern</li>
+                        <li>jQuery + ES6</li>
+                    </ul>
+                    <li><strong>Live-coding</strong></li>
+                    <li><strong>JS-Tests</strong></li>
+                </ul>
+                <img class="plain" style="float: right; height: 40%; margin-top: 2.5em" src="./img/agenda.jpg">
+                <!-- Image taken from: https://boygeniusreport.files.wordpress.com/2016/10/original_sale_5657_image_wide.jpg?quality=98&strip=all&w=782 -->
+            </section>
+
+            
+
+        </div>
+    </div>
+
+    <script src="../../../jspm_packages/system.js"></script>
+    <script src="./config.js"></script>
+    <script>
+        System.import('./js/main');
+    </script>
+</body>
+
+</html>
