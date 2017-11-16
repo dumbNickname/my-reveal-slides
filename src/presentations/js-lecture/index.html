@@ -27,12 +27,12 @@
                 <h1>
                     <span class="fallbackColor">JavaScript*</span>
                 </h1>
-                <h5><span style="color: #4d4e4f" >* with HTML & CSS introduction </span></h5>
+                <h5><span style="color: #4d4e4f">* with HTML & CSS introduction </span></h5>
                 <img class="plain" style="height: 50%" src="./img/js.jpg">
                 <!-- Image taken from: https://i.pinimg.com/originals/68/38/43/683843d451f6eabfa2eb14f6d50a9b7a.jpg -->
                 <p style="margin-left: 16em; margin-top:-0.5em" class="author">
                     <span style="display:block">by</span>
-                    <span>Ewa Nestorowicz</span>
+                    <span>RWC Team</span>
                 </p>
             </section>
 
@@ -58,7 +58,539 @@
                 <!-- Image taken from: https://boygeniusreport.files.wordpress.com/2016/10/original_sale_5657_image_wide.jpg?quality=98&strip=all&w=782 -->
             </section>
 
+            <section>
+                <h1 class="fallbackColor">
+                    HTML & CSS
+                </h1>
+            </section>
+
+            <section>
+                <h1>
+                    HTML
+                </h1>
+
+                <ul class="no-bullets">
+                    <li>stands for <strong> Hyper Text Markup Language</strong></li>
+                    <li>describes the <strong>structure</strong> Web pages using <strong>markup</strong></li>
+                    <li>elements are the <strong>building blocks</strong> of HTML pages</li>
+                    <li>elements are represented by <strong>tags</strong></li>
+                    <li>browsers <strong>do not display </strong> HTML tags but use them to <strong>render the content of the page</strong></li>
+                </ul>
+
+                <img class="plain" style="margin-left: 15em; height: 25%; margin-top: -7.5em;" src="./img/logo.png">
+                <!-- Image taken from: https://www.w3.org/html/logo/downloads/HTML5_Logo_512.png -->
+            </section>
+
+            <section>
+
+                <h1>HTML Document</h1>
+                <h5>example</h5>
+
+        <pre><code >
+                    &lt;!DOCTYPE html&gt;
+                    &lt;html&gt;
+                    &lt;head&gt;
+                        &lt;title&gt;Page Title&lt;/title&gt;
+                    &lt;/head&gt;
+                    &lt;body&gt;
+                        &lt;h1&gt;My First Heading&lt;/h1&gt;
+                        &lt;p&gt;My first paragraph.&lt;/p&gt;
+                    &lt;/body&gt;
+                    &lt;/html&gt;
+        </code></pre>
+            </section>
+
+
+            <section>
+
+                <h1>HTML Document</h1>
+                <h5>example</h5>
+
+        <pre><code >
+            &lt;!DOCTYPE html&gt; // defines this document to be HTML5
+            &lt;html&gt; // the root element of an HTML page
+            &lt;head&gt; // contains meta information about the document
+                &lt;title&gt;Page Title&lt;/title&gt; // a title for the document
+            &lt;/head&gt;
+            &lt;body&gt; // contains the visible page content
+                &lt;h1&gt;My First Heading&lt;/h1&gt; // large heading
+                &lt;p&gt;My first paragraph.&lt;/p&gt; // paragraph
+            &lt;/body&gt;
+            &lt;/html&gt;
+        </code></pre>
+            </section>
+
+
+            <section>
+                <h1>
+                    CSS
+                </h1>
+
+                <ul class="no-bullets">
+                    <li>stands for <strong> Cascading Style Sheets</strong></li>
+                    <li>describes how <strong>HTML elements </strong> to be <strong>displayed </strong> on screen, paper, or in other media</li>
+                    <li>can <strong>control the layout </strong> of multiple <strong>web pages </strong> all at once</li>
+                </ul>
+
+                <img class="plain" style="margin-left: 9em; height: 21%; margin-top: -9.255em;" src="./img/css3.png">
+                <!-- Image taken from: http://www.growingwiththeweb.com/images/general/css3.png -->
+            </section>
+
+            <section>
+                <h1>
+                    CSS
+                </h1>
+                <h5>syntax</h5>
+
+                <pre><code>
+                        &lt;selector1&gt;, &lt;selector2&gt; {
+                        &lt;property1&gt; : &lt;value1&gt;;
+                        &lt;property2&gt; : &lt;value2&gt;;
+                        &lt;property3&gt; : &lt;value3&gt;
+                        }
+
+                        &lt;selector1&gt; {
+                        &lt;property4&gt; : &lt;value4&gt;
+                        }
+        </code></pre>
+            </section>
             
+            <section>
+                <h1>
+                    CSS
+                </h1>
+                <h5>syntax</h5>
+
+                <pre><code >
+                        p, div {
+                        background: red;
+                        font-weight: bold;
+                        color: blue
+                        }
+                        
+                        p {
+                        font-style: italic
+                        }
+        </code></pre>
+            </section>
+
+            <section data-background-color="#33428f">
+                <h2 style="color: white"> CSS selectors </h2>
+                <table style="color: white">
+                    <thead>
+                        <tr>
+                            <th>Selector</th>
+                            <th>Selected elements</th>
+                        </tr>
+                        <tr>
+                            <td>p</td>
+                            <td>paragraphs</td>
+                        </tr>
+                        <tr>
+                            <td>.class1</td>
+                            <td>elements with <i>class1</i></td>
+                        </tr>
+                        <tr>
+                            <td>#content1</td>
+                            <td>elements with identifier <i>content</i></td>
+                        </tr>
+                        <tr>
+                            <td>p.class1</td>
+                            <td>paragraphs with class <i>class1</i></td>
+                        </tr>
+                        <tr>
+                            <td>p .class1</td>
+                            <td>elements with <i>class1</i> having paragraph parent</td>
+                        </tr>
+                        <tr>
+                            <td>.class1 .class2</td>
+                            <td>elements with class <i>class2</i> having parent with class <i>class1</i></td>
+                        </tr>
+                        <tr>
+                            <td>p.class1.class2</td>
+                            <td>paragraph with <strong>both</strong> classes <i>class1</i> and <i>class2</i></td>
+                        </tr>
+                    </thead>
+                </table>
+            </section>
+
+            <section data-background-color="#33428f">
+                <h2 style="color: white"> CSS selectors </h2>
+                <table style="color: white">
+                    <thead>
+                        <tr>
+                            <th>Selector</th>
+                            <th>Selected elements</th>
+                        </tr>
+                        <tr>
+                            <td>*</td>
+                            <td>all elements</td>
+                        </tr>
+                        <tr>
+                            <td>div > p</td>
+                            <td>all &lt;p&gt; elements where the direct parent is a &lt;div&gt; element</td>
+                        </tr>
+                        <tr>
+                            <td>h1, p</td>
+                            <td>all &lt;h1&gt; elements and all &lt;p&gt; elements</td>
+                        </tr>
+                        <tr>
+                            <td>div p</td>
+                            <td>all &lt;p&gt; elements that are inside a &lt;div&gt; element</td>
+                        </tr>
+                        <tr>
+                            <td>ul + h3</td>
+                            <td>the &lt;h3&gt; element that are next to each &lt;ul&gt; elements</td>
+                        </tr>
+                    </thead>
+                </table>
+            </section>
+
+            <section>
+                <h1>Applying CSS styles</h1>
+                <pre><code >
+                //external script             
+                <link href="style.css" rel="stylesheet">
+        </code></pre>
+            <pre><code >
+                //inline styles
+                &lt;p style=&quot;font-size:12px&quot;&gt; 
+        </code></pre>
+            </section>
+            
+            <section>
+                <h1>display:block</h1>
+                <ul class="no-bullets">
+                    <li>displayed <strong>under</strong> each other</li>
+                    <li>example: <strong>&lt;div&gt;, &lt;section&gt;, &lt;p&gt;</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>display:inline</h1>
+                <ul class="no-bullets">
+                    <li>displayed <strong>next to</strong> each other</li>
+                    <li>example: <strong>&lt;a&gt;, &lt;span&gt;</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>display:inline-block</h1>
+                <ul class="no-bullets">
+                    <li>displayed <strong>under</strong> each other</li>
+                    <li>positioned according to the <strong>normal flow</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>position:relative</h1>
+                <ul class="no-bullets">
+                    <li>positioned <strong>relative </strong> its normal position</li>
+                    <li>allows to specify a specific <strong>offset</strong> (left, top)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>position:absolute</h1>
+                <ul class="no-bullets">
+                    <li>positioned relative to its <strong>first positioned (not static) ancestor element</strong></li>
+                    <li>allows to specify a specific <strong>offset</strong> (left, top)</li>
+                </ul>
+            </section>
+            <section>
+                <h1>position:fixed</h1>
+                <ul class="no-bullets">
+                    <li>positioned <strong>relative to the browser window</strong></li>
+                    <li>allows to specify a specific <strong>offset</strong> (left, top)</li>
+                    <li>always stays in <strong>the same </strong> even if the page is <strong> scrolled </strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+
+                <ul class="no-bullets">
+                    <li>is the <strong>programming language </strong> of HTML and the Web</li>
+                </ul>
+                <img class="plain" style="margin-left: 14em; height: 17%; margin-top: -5em;" src="./img/js-logo.png">
+                <!-- Image taken from: https://seeklogo.com/images/J/java-script-js-logo-ACF4AE5082-seeklogo.com.png -->
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>syntax</h5>
+                <p>Single <strong>var pattern</strong></p>
+                <pre><code >
+                    var a = 1,
+                        b = 2,
+                        sum = a + b,
+                        myVar,
+                        hello = function () {
+                            return 'Hello!';
+                        };    
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>syntax</h5>
+                <p>Objects</p>
+                <pre><code>
+                    var emptyObject = {},
+                        person = {
+                            firstName : 'John',
+                            lastName : 'Example',
+                            age : 30
+                        };
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>syntax</h5>
+                <p>Objects - value's retrieval</p>
+                <pre><code>
+        var emptyObject = {},
+            person = {
+                firstName: 'John',
+                lastName: 'Example',
+                age: 30
+            };
+
+        // retrieval
+        person.firstName // 'John'
+        person['lastName'] // 'Example'
+        person.salutation // undefined
+        salutation = person.salutation || ''; // the default operator
+        person.address.street // throws TypeError
+        street = person.address && person.address.street // undefined
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>syntax</h5>
+                <p>Objects - values' update and properties' removal</p>
+                <pre><code>
+        var person = {
+            firstName: 'John',
+            lastName: 'Example',
+            age: 30
+            };
+
+        // update
+        person['firstName'] = 'Joe';
+        person.age = 33;
+
+        // delete
+        delete person.age;
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>syntax</h5>
+                <p>Functions are <strong>objects </strong></p>
+                <pre><code>
+        var add = function (a, b) {
+            return a + b;
+        };
+
+        add(1, 2); // 3
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>syntax</h5>
+                <p>Functions stored as <strong>properties </strong> objects...</p>
+                <pre><code>
+    var person = {
+        firstName: 'John',
+        lastName: 'Example',
+        age: 30,
+        letMeIntroduceMyself: function () {
+            return 'My name is ' + this.firstName + ' ' + this.lastName;
+        }
+    };
+
+    person.letMeIntroduceMyself(); // My name is John Example
+    person.firstName // 'John' - no privacy
+                </code></pre>
+     <p>...are called <strong>methods</strong></p>
+            </section>
+
+             <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>scope</h5>
+                <p>is defined by <strong>functions</strong>, not {} blocks</p>
+                <pre><code>
+    // Scope 1
+    var funcA = function () {
+        // Scope 2
+        var funcB = function () {
+            // Scope 3
+        };
+    };
+
+    person.letMeIntroduceMyself(); // My name is John Example
+    person.firstName // 'John' - no privacy
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>lexical scope</h5>
+                <p><strong>Inner scope </strong> access <strong>outer scope</strong> and <strong>not </strong> versa</p>
+                <pre><code>
+    var myFun = function (someInput) {
+    var a = 1,
+        b = 2,
+        yourFun = function () {
+            var b = 22,
+                c = 3;
+            // at this point a = 1, b = 22, c = 3
+            a = 11;
+        };
+    // at this point a = 1, b = 2, c is not defined
+    yourFun();
+    // at this point a = 11, b = 2, c is not defined
+    };
+    myFun();
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <p>Functions <strong>cannot </strong> be <strong>overloaded</strong></p>
+                <pre><code>
+    var add = function (a) {
+        return a + 1;
+    };
+    // this will override the previous 'add' function definition
+    var add = function (a, b) {
+        return a + b;
+    };
+
+    add(1, 2); // 3
+    add(); // a = undefined, b = undefined, returns NaN
+    add(1); // a = 1, b = undefined, returns 1 + undefined = NaN
+    add(1, 2, 'third argument will be ignored'); // 3
+                </code></pre>
+            </section>
+
+             <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>closure</h5>
+                <p>enables a <strong>function</strong> to keep its <strong> creation context</strong></p>
+                <pre><code>
+    var myObjectFactory = function (param) {
+        var value = 'Value';
+
+        return {
+            theseAreMySecrets: function () {
+                return 'value = ' + value + ', param = ' + param;
+            }
+        };
+    },
+    myObject = myObjectFactory('Param');
+    myObject.theseAreMySecrets(); // value = Value, param = Param
+    myObject.value; // undefined
+                </code></pre>
+            </section>
+
+             <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>module pattern - IIFE</h5>
+                <p>makes <strong>use</strong> of <strong>function scope</strong> and <strong>closure</strong></p>
+                <pre><code>
+    var person = (function () {
+        var details = {
+            firstName: 'John',
+            lastName: 'Example',
+            age: 30
+        };
+        return {
+            letMeIntroduceMyself: function () {
+                return 'My name is ' +
+                    details.firstName + ' ' + details.lastName;
+            }
+        };
+    })();
+    person.letMeIntroduceMyself(); // My name is John Example
+    person.details; // undefined
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>this keyword</h5>
+                <p>function's <strong>this</strong> keyword behaves a <strong>little</strong> differently in <strong>JavaScript</strong> compared to other languages</p>
+                <pre><code>
+        var obj = {a: 'Custom'};
+
+        var a = 'Global';
+
+        function whatsThis(arg) {
+            return this.a;  
+        }
+
+        whatsThis();          // 'Global'
+        whatsThis.call(obj);  // 'Custom'
+        whatsThis.apply(obj); // 'Custom'
+                </code></pre>
+            </section>
+
+
+            <section>
+                <h1>
+                    Javascript
+                </h1>
+                <h5>constructor function</h5>
+                <p>is intended to be invoked with the <strong>new</strong> prefix </p>
+                <pre><code>
+    var Person = function () {
+      this.firstName = 'John';
+      this.lastName = 'Example';
+      this.age = 30;
+    }, johnExample;
+
+    Person.prototype.letMeIntroduceMyself = function () {
+    return 'My name is ' + this.firstName + ' ' + this.lastName;
+    };
+
+    johnExample = new Person();
+    johnExample.letMeIntroduceMyself();  // My name is John Example
+    johnExample.firstName; // 'John' - no privacy
+                </code></pre>
+            </section>
+
 
         </div>
     </div>
