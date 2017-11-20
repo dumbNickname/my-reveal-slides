@@ -1,0 +1,398 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Handlee|Nothing+You+Could+Do|Open+Sans+Condensed:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/theme/white.css">
+    <link rel="stylesheet" href="../../../src/css/common.css">
+    <link rel="stylesheet" href="../../css/solarized-light.css">
+    <link rel="stylesheet" href="css/rxjs.css">
+
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? './css/print/pdf.css' : './css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h5><span class="fallbackColor">From </span><span class="primaryColor">callbacks </span><span class="fallbackColor">via </span><span class="primaryColor">promises </span><span class="fallbackColor">to... </span></h5>
+                <h1><span class="fallbackColor">...</span><span class="primaryColor"> RxJS </span> <span class="fallbackColor">Observables</span></h1>
+                 <img class="plain" style="height: 40%" src="./img/rxjs.jpg"> 
+                <!-- Image taken from: https://aymen.co/wp-content/uploads/2017/01/reactive-js-thmb-1.jpg -->
+                <p style="margin-left: 14em; margin-top: 0.5em" class="author">
+                    <span style="display:block">by</span>
+                    <span>Ewa Nestorowicz</span>
+                </p>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor"> Reactive programming </span></h1>
+                <p><strong>Reactive programming</strong> is programming with <strong>asynchronous data streams</strong>.</p>
+                <img class="plain" style="height: 30%" src="./img/reactive.png"> 
+                <!-- Image taken from: http://blog.wittchen.biz.pl/category/java/rxjava/ -->
+                <p>It's generally <strong>enhanced observer pattern</strong></p>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Asynchronous programming</span></h1>
+                <ul>
+                    <li><strong>Blocking operations</strong> are implemented using <strong>callbacks</strong></li>
+                    <li>Browsers are full of asynchronous events: <strong>XHR responses, DOM events, timeouts,... </strong></li>
+                </ul>
+                <pre><code>
+        // synchronous style
+        var currentOrder = orders.get(1234);
+        console.log(currentOrder.referenceNumber);
+
+        // asynchronous style
+        orders.get(1234,
+            function (currentOrder) { // anonymous callback function
+                console.log(currentOrder.referenceNumber);
+            });     
+                </code></pre>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Callback</span></h1>
+                <p>The most <strong>primitive</strong> way to handle <strong>async</strong> in JS.</p>
+                <pre><code>
+        fetchData((data, error) => {
+            if(!error) {
+                send(data);
+            }
+        });
+                </code></pre>
+            </section>
+
+             <section>
+                <h1><span class="fallbackColor">Callback hell</span></h1>
+                <p>it's when people try to write <strong>JavaScript</strong> in a way where execution happens <strong>visually from top to bottom</strong></p>
+                <pre><code>
+        fetchData(id, (data, error) => {
+            if(!error) {
+                send({name: 'first callback data', data});
+                fetchData(data.parentId, (data, error) => {
+                    if(!error) {
+                        send({name: 'more callback data', data});
+                        fetchData(data.parentId, (data, error) => {
+                            if(!error) {
+                                send({name: 'HILFEEEEEEE!', data});
+                            }
+                        });
+                    }
+                });
+            }
+        };
+                </code></pre>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Promises</span></h1>
+                <p>it's when people try to write <strong>JavaScript</strong> in a way where execution happens <strong>visually from top to bottom</strong></p>
+                <pre><code>
+        fetchData(id)
+            .then(data => {
+                send({name: 'first callback data', data});
+                return fetchData(data.parentId);
+            })
+            .then(data => {
+                send({name: 'more data', data});
+                return fetchData(data.parentId);
+            })
+            .then(data => {
+                send({name: 'YEEEEAH, DONE!', data});
+            });
+                </code></pre>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Promises</span></h1>
+                <h5>basic example</h5>
+                <pre><code>
+        let myFirstPromise = new Promise((resolve, reject) => {
+            setTimeout(function(){
+                resolve("Success!"); // Yay! Everything went well!
+            }, 250);
+        });
+
+        myFirstPromise.then((successMessage) => {
+            console.log("Yay! " + successMessage);
+        });
+                </code></pre>
+            </section>
+
+            
+            <section>
+                <h1><span class="fallbackColor">Promises</span></h1>
+                <h5>chaining vs. aggregation</h5>
+                <pre><code>
+var promise = Promise.resolve('Pizza with cheese');
+
+promise.then(function (pizza) {
+    console.info('Let us add something to ' + pizza);  // 1
+    return pizza + ' and sausage';
+}).then(function (pizza) {
+    console.info('Andrew is eating ' + pizza);         // 3
+});
+
+promise.then(function (pizza) {
+    console.info('John is eating ' + pizza);           // 2
+});
+                </code></pre>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Promises</span></h1>
+                <ul>
+                    <li>Guaranteed future</li>
+                    <li>Immutable</li>
+                    <li>Single value</li>
+                    <li>Caching</li>
+                    <li><strong>Cannot be cancelled!</strong></li>
+                </ul>
+            </section>
+
+
+
+            <section>
+                <h1><span class="fallbackColor"> Reactive programming </span></h1>
+                <p><strong>Reactive programming</strong> is programming with <strong>asynchronous data streams</strong>.</p>
+                <img class="plain" style="height: 30%" src="./img/reactive.png"> 
+                <!-- Image taken from: http://blog.wittchen.biz.pl/category/java/rxjava/ -->
+                <p>It's generally <strong>enhanced observer pattern</strong></p>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor"> Reactive programming </span></h1>
+                <h5>data stream can be created from:</h5>
+                <ul>
+                    <li>UI Events</li>
+                    <li>Http Requests</li>
+                    <li>Array-like Objects</li>
+                    <li>Memory/Cache</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor"> Stream </span></h1>
+                <ul>
+                    <li>a sequence of <strong>ongoing events</strong> ordered in <strong>time</strong></li>
+                    <li>emits a <strong>value, error </strong> and <strong>complete </strong> signal</li>
+                </ul>
+                <img class="plain" style="height: 40%" src="./img/stream.png"> 
+                <!-- Image taken from: https://camo.githubusercontent.com/36c0a9ffd8ed22236bd6237d44a1d3eecbaec336/687474703a2f2f692e696d6775722e636f6d2f634c344d4f73532e706e67 -->
+            </section>
+
+             <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <ul>
+                    <li>are used to <strong>watch</strong> these streams and <strong>emit functions</strong> when
+                     a <strong>value, error or completed signal</strong> is returned</li>
+                    <li>can be <strong>subscribed</strong> by any <strong>observer</strong></li>
+                    <li>will <strong> constantly </strong> watch streams and <strong>update</strong> accordingly</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <ul>
+                    <li>Stream of <strong>zero</strong>, <strong>one or more values</strong></li>
+                    <li>Over <strong>any</strong> amount of <strong>time </strong></li>
+                    <li>Cancellable</li>
+                </ul>
+                <p>Stream are a <strong>set</strong> with a <strong>dimension of time</strong>.</p>
+            </section>
+
+             <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <div style="display:inline;"><pre><code>
+        Rx.Observable.prototype.flatMapLatest(selector, [thisArg])
+                </code></pre>
+                <p>Projects each element of an <strong>observable sequence</strong> a new sequence of <strong>observable sequence</strong> by incorporating the element's index and then transforms an <strong>observable sequence</strong> of <strong>observable sequence</strong> into an <strong>observable sequence</strong> producing values only from the most recent <strong>observable sequence</strong>.</p>
+                <div style="display:inline;"class="tenor-gif-embed" data-postid="7222272" data-share-method="host" data-width="20%" data-aspect-ratio="0.8333333333333334"><a href="https://tenor.com/view/monkey-gif-7222272">猴子 GIF</a> from <a href="https://tenor.com/search/monkey-gifs">Monkey GIFs</a></div><script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+                </div>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>examples</h5>
+                <pre><code>
+            const btn = $('#button');
+            const btnStream = Rx.Observable.fromEvent(btn, 'click');
+
+            btnStream.subscribe(() => console.log('clicked'));
+                </code></pre>
+         <pre><code>
+            const input = $('#input');
+            const inputStream = Rx.Observable.fromEvent(input, 'keyup');
+
+            inputStream.subscribe((e) => console.log(`${e.target.value}`))
+                </code></pre>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>examples</h5>
+                <pre><code>
+    const moveStream = Rx.Observable.fromEvent(document, 'mousemove');
+    const output = $('#output');
+    moveStream.subscribe(
+        (e) => output.html(`<h1> X: ${e.clientX} Y: ${e.clientY}</h1>`));
+                </code></pre>
+
+                <pre><code>
+    const arr = [1, '2', 3, 4, '5', '6'];
+    const arrStream = Rx.Observable.from(arr);
+    
+    arrStream.subscribe(
+        x => console.log(x),
+        err => console.log(err),
+        complete => console.log('completed')
+    );
+                </code></pre>
+        
+            </section>
+
+             <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>create</h5>
+                <pre><code>
+        const observable = Rx.Observable.create(observer => {
+            observer.next(1);
+            observer.next(2);
+            observer.next(3);
+            setTimeout(() => {
+                observer.next(4);
+                observer.complete();
+            }, 1000);
+        });
+
+        observable.subscribe({
+            next: x => console.log(x),
+            error: err => console.error(err),
+            complete: () => console.log('completed!')
+        })
+                </code></pre>
+        
+            </section>
+
+             <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>create</h5>
+                <pre><code>
+            function foo() {
+                console.log('Hello');
+                return 42;
+                return 100; // dead code. will never happen
+            }   
+                </code></pre>
+                <pre><code>
+        const foo = Rx.Observable.create(observer => {
+            console.log('Hello');
+            observer.next(42);
+            observer.next(100); // "return" another value
+            observer.next(200); // "return" yet another
+        });
+                </code></pre>
+        
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>cancel</h5>
+                <pre><code>
+        const foo = Rx.Observable.interval(1000).take(9);
+        const sub = foo.subscribe(x => console.log(x));
+
+        setTimeout(() => {
+            sub.unsubscribe();
+        }, 3000);   
+                </code></pre>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>merge & concat</h5>
+                <pre><code>
+    const s1 = Rx.Observable.interval(2000).take(5).map(x => `s1 ${x}`)
+    const s2 = Rx.Observable.interval(500).take(5).map(x => `s2 ${x}`)
+    
+    Rx.Observable.concat(s1, s2).merge(x => console.log(x));
+    // "s2 0", "s2 1", "s1 0", "s2 2", "s2 3", 
+    // "s1 1", "s2 4", "s1 2", "s1 3", "s1 4" 
+                </code></pre>
+
+                <pre><code>
+    const s1 = Rx.Observable.interval(2000).take(5).map(x => `s1 ${x}`)
+    const s2 = Rx.Observable.interval(500).take(5).map(x => `s2 ${x}`)
+    
+    Rx.Observable.concat(s1, s2).subscribe(x => console.log(x));
+    // "s1 0", "s1 1", "s1 2", "s1 3", "s1 4", 
+    // "s2 0", "s2 1", "s2 2", "s2 3", "s2 4"
+                </code></pre>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>mergeMap</h5>
+                <pre><code>
+    Rx.Observable.of('Hello')
+        .subscribe( x => {
+            Rx.Observable.of(`${x} everyone`)
+                .subscribe(x => console.log(x))
+    }); // DON't DO THIS!
+                </code></pre>
+
+                <pre><code>
+    Rx.Observable.of('Hello')
+        .mergeMap(x => {
+            return Rx.Observable.of(`${x} everyone`)
+        })
+        .subscribe(x => console.log(x));
+                </code></pre>
+            </section>
+
+             <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>switchMap</h5>
+                <pre><code>
+const getUserFromGithub = username => {
+    return $.ajax({
+        url: `https://api.github.com/users/${username}`,
+        dataType: 'jsonp'
+    }).promise();
+};
+
+const input = $('#input');
+const inputSource = Rx.Observable.fromEvent(input, 'keyup')
+            .map(e => e.target.value)
+            .switchMap(x => {
+                return Rx.Observable.fromPromise(getUserFromGithub(x));
+            });     
+inputSource.subscribe(x => console.log(x));
+                </code></pre>
+
+                
+            </section>
+
+
+        </div>
+    </div>
+
+    <script src="../../../jspm_packages/system.js"></script>
+    <script src="./config.js"></script>
+    <script>
+        System.import('./js/main');
+    </script>
+</body>
+
+</html>
