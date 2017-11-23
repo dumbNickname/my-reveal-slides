@@ -89,7 +89,7 @@
 
             <section>
                 <h1><span class="fallbackColor">Promises</span></h1>
-                <p>it's when people try to write <strong>JavaScript</strong> in a way where execution happens <strong>visually from top to bottom</strong></p>
+                <p>The <strong>Promise</strong> object represents the eventual completion (or failure) of an <strong>asynchronous</strong> operation, and its resulting <strong>value</strong>.</p>
                 <pre><code>
         fetchData(id)
             .then(data => {
@@ -278,8 +278,8 @@ promise.then(function (pizza) {
             </section>
 
              <section>
-                <h1><span class="fallbackColor">Observables </span></h1>
-                <h5>create</h5>
+                <h1><span class="fallbackColor">Observables and functions </span></h1>
+                <h5>differences</h5>
                 <pre><code>
             function foo() {
                 console.log('Hello');
@@ -318,7 +318,7 @@ promise.then(function (pizza) {
     const s1 = Rx.Observable.interval(2000).take(5).map(x => `s1 ${x}`)
     const s2 = Rx.Observable.interval(500).take(5).map(x => `s2 ${x}`)
     
-    Rx.Observable.concat(s1, s2).merge(x => console.log(x));
+    Rx.Observable.merge(s1, s2).subscribe(x => console.log(x));
     // "s2 0", "s2 1", "s1 0", "s2 2", "s2 3", 
     // "s1 1", "s2 4", "s1 2", "s1 3", "s1 4" 
                 </code></pre>
@@ -372,8 +372,30 @@ const inputSource = Rx.Observable.fromEvent(input, 'keyup')
             });     
 inputSource.subscribe(x => console.log(x));
                 </code></pre>
+            </section>
 
-                
+            <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>autocomplete - example</h5>
+                <pre><code>
+    const getUserFromGithub = username => {
+        return $.ajax({
+            url: `https://api.github.com/users/${username}`,
+            dataType: 'jsonp'
+        }).promise();
+    };
+    
+    const input = $('#input');
+    const inputSource = Rx.Observable.fromEvent(input, 'keyup')
+                .map(e => e.target.value)
+                .filter(x => x.length > 2)
+                .debounceTime(750)
+                .distinctUntilChanged()
+                .switchMap(x => {
+                    return Rx.Observable.fromPromise(getUserFromGithub(x));
+                });     
+    inputSource.subscribe(x => console.log(x.data.public_repos)
+                </code></pre>
             </section>
 
 
