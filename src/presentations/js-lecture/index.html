@@ -591,6 +591,150 @@
                 </code></pre>
             </section>
 
+            <section>
+                <h1>
+                    jQuery
+                </h1>
+                <ul class="no-bullets">
+                    <li>is a Javascript <strong>Library</strong></li>
+                    <li><strong>HTML/DOM </strong> manipulation</li>
+                    <li><strong>CSS </strong> manipulation</li>
+                    <li><strong>HTML event </strong> methods</li>
+                    <li><strong>AJAX</strong></li>
+                </ul>
+                 <img class="plain" style="margin-left: 14em; height: 17%; margin-top: -9.8em;" src="./img/jquery-logo.png">
+                <!-- Image taken from: https://convertintowordpress.com/wp-content/uploads/2015/12/jquery_paging_table_example_code.png -->
+            </section>
+
+            <section>
+                <h1>
+                    jQuery
+                </h1>
+                <h5>example</h5>
+                <pre><code>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("#test").hide();
+        });
+    });
+    // When a user clicks on a button, the elements with class="test" 
+    // will be hidden
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    jQuery
+                </h1>
+                <h5>example</h5>
+                <pre><code>
+    $("#p1").mouseenter(function(){
+        alert("You entered p1!");
+    });
+    // The function is executed when the mouse pointer enters 
+    // HTML element with id "p1".
+                </code></pre>
+            </section>
+
+
+            <section>
+                <h1>
+                    es6
+                </h1>
+                <h5>var & let - differences</h5>
+                <pre><code>
+        var foo = 123;
+        if (true) {
+            var foo = 456;
+        }
+        console.log(foo); // 456
+                </code></pre>
+                <pre><code>
+        let foo = 123;
+        if (true) {
+            let foo = 456;
+        }
+        console.log(foo); // 123
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    es6
+                </h1>
+                <h5>const</h5>
+                <p><strong>Immutable</strong> after creation.</p> 
+                <pre><code>
+        const foo = 123;
+        foo = 456; // TypeError
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    es6
+                </h1>
+                <h5>arrow functions</h5>
+                <pre><code>
+        var func = () => {
+            console.log('This saves a lot of typing.');
+        }
+
+        var func = () => console.log('even this way');
+                </code></pre>
+                <pre><code>
+        [1,2,3].filter(a => a > 2); // [3]
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Tests
+                </h1>
+                <h5>karma & jasmine</h5>
+                <p><strong>Karma</strong> - tool used to spawn 
+                    a web server which <strong>loads your application's source code</strong> and <strong>executes </strong> your tests.</p>
+                 
+                <p><strong>Jasmine</strong> - <strong>BDD </strong> for JavaScript, provides functions to help with <strong>structuring tests and making assertions.</strong>
+            </section>
+
+            <section>
+                <h1>
+                    Tests
+                </h1>
+                <h5>structure</h5>
+                <pre><code>
+        describe('A suite', function() {
+            it('contains spec with an expectation', function() {
+                expect(true).toBe(true);
+            });
+        });
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>
+                    Karma
+                </h1>
+                <h5>configuration</h5>
+                <pre><code>
+        // install Karma
+        npm install karma
+
+        // install plugins and tools
+        npm install karma-jasmine
+        npm install karma-phantomjs-launcher
+        npm install karma-chrome-launcher
+        npm install jasmine-core
+
+        // run Karma
+        ./node_modules/karma/bin/karma start / init / run
+        
+        // alternative
+        npm install -g karma-cli
+        karma start / init / run
+                </code></pre>
+            </section>
 
         </div>
     </div>
