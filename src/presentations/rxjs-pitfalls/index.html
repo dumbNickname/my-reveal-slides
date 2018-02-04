@@ -1,0 +1,238 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Handlee|Nothing+You+Could+Do|Open+Sans+Condensed:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/theme/white.css">
+    <link rel="stylesheet" href="../../../src/css/common.css">
+    <link rel="stylesheet" href="../../css/solarized-light.css">
+    <link rel="stylesheet" href="css/rxjs-pitfalls.css">
+
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? './css/print/pdf.css' : './css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h5><span class="fallbackColor">From </span><span class="primaryColor">callbacks </span><span class="fallbackColor">via </span><span class="primaryColor">promises </span><span class="fallbackColor">to... </span></h5>
+                <h1><span class="fallbackColor">...</span><span class="primaryColor"> RxJS </span> <span class="fallbackColor">Observables </span></h1>
+                <h5><span class="primaryColor">pitfalls! </span></h5>
+                 <img class="plain" style="height: 40%" src="./img/rxjs.jpg"> 
+                <!-- Image taken from: https://aymen.co/wp-content/uploads/2017/01/reactive-js-thmb-1.jpg -->
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor"> Reactive programming </span></h1>
+                <p><strong>Reactive programming</strong> is programming with <strong>asynchronous data streams</strong>.</p>
+                <img class="plain" style="height: 30%" src="./img/reactive1.png"> 
+                <!-- Image taken from: http://blog.wittchen.biz.pl/category/java/rxjava/ -->
+                <p>It's generally <strong>enhanced observer pattern</strong></p>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor"> Reactive programming </span></h1>
+                <h5>data stream can be created from:</h5>
+                <ul>
+                    <li>UI Events</li>
+                    <li>Http Requests</li>
+                    <li>Array-like Objects</li>
+                    <li>Memory/Cache</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor"> Stream </span></h1>
+                <ul>
+                    <li>a sequence of <strong>ongoing events</strong> ordered in <strong>time</strong></li>
+                    <li>emits a <strong>value, error </strong> and <strong>complete </strong> signal</li>
+                </ul>
+                <img class="plain" style="height: 40%" src="./img/stream.png"> 
+                <!-- Image taken from: https://camo.githubusercontent.com/36c0a9ffd8ed22236bd6237d44a1d3eecbaec336/687474703a2f2f692e696d6775722e636f6d2f634c344d4f73532e706e67 -->
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor"> Stream... </span></h1>
+                <h5><span class="fallbackColor"> in other words</span></h5>
+                <iframe src="https://giphy.com/embed/14aumMYgx9CvKw" width="480" height="277" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cats-endless-stream-14aumMYgx9CvKw"></a></p>         
+            </section>
+
+             <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <ul>
+                    <li>are used to <strong>watch</strong> these streams and <strong>emit functions</strong> when
+                     a <strong>value, error or completed signal</strong> is returned</li>
+                    <li>can be <strong>subscribed</strong> by any <strong>observer</strong></li>
+                    <li>will <strong> constantly </strong> watch streams and <strong>update</strong> accordingly</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <ul>
+                    <li>Stream of <strong>zero</strong>, <strong>one or more values</strong></li>
+                    <li>Over <strong>any</strong> amount of <strong>time </strong></li>
+                    <li>Cancellable</li>
+                </ul>
+                <p>Stream are a <strong>set</strong> with a <strong>dimension of time</strong>.</p>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Observables </span></h1>
+                <h5>examples</h5>
+                <pre><code>
+            const btn = $('#button');
+            const btnStream = Rx.Observable.fromEvent(btn, 'click');
+
+            btnStream.subscribe(() => console.log('clicked'));
+                </code></pre>
+         <pre><code>
+            const input = $('#input');
+            const inputStream = Rx.Observable.fromEvent(input, 'keyup');
+
+            inputStream.subscribe((e) => console.log(`${e.target.value}`))
+                </code></pre>
+            </section>
+
+             
+            <section>
+                <h1><span class="fallbackColor">Subscribe hell </span></h1>
+                <span><a href="http://callbackhell.com/">What is callback hell?</a></span>
+                <pre><code>
+           const userData$ = Rx.Observable.ajax({
+                url: 'https://jsonplaceholder.typicode.com/users/1',
+                method: 'GET',
+            });
+            
+            const click$ = Rx.Observable.fromEvent(document, 'click');
+            
+            click$.subscribe({
+                next: (ev) => userData$.subscribe({
+                    next: (data) => console.log(data)
+                })
+            })
+            
+                </code></pre>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">Subscribe hell </span></h1>
+                <span>Use <strong>flattening operators</strong> instead of nested subscriptions!</span>
+                <pre><code>
+            const userData$ = Rx.Observable.ajax({
+                url: 'https://jsonplaceholder.typicode.com/users/1',
+                method: 'GET',
+            });
+  
+            const click$ = Rx.Observable.fromEvent(document, 'click');
+
+            const resWhenClick$ = click$.mergeMap(ev => userData$);
+
+            resWhenClick$.subscribe({
+                next: function (data) {
+                    console.log(data.response)); 
+                }
+            });
+            
+                </code></pre>
+            </section>
+
+            <section>
+                <h1><span class="fallbackColor">switchmap</h1>
+               
+                <pre><code>
+            const click$ = Rx.Observable.fromEvent(document, 'click');
+
+            const tickWhenClick$ = click$
+            .switchMap(ev => Rx.Observable.interval(500));
+
+            tickWhenClick$.subscribe(function (x) {
+            console.log(x)|| displayInPreview(x); 
+            });
+                </code></pre>
+         <span> By default, use <strong>switchMap</strong>, if you really know what you're doing, then go ahead and use <strong>mergeMap</strong>.</span>
+            </section>
+
+             <section>
+                <h4><span class="fallbackColor">An Observable is <strong>kept alive</strong> until it <strong>completes</strong></h4>
+               <iframe src="https://giphy.com/embed/eVluHT4JazHZC" width="480" height="259" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/tom-brady-pandawhale-eVluHT4JazHZC"></a></p>
+            </section>
+
+             <section>
+                <h2><span class="fallbackColor">Remember to <strong>unsubscribe </strong>and do it wisely</h2>
+                    
+                    <pre><code>
+onMount() {
+  this.dataSub = this.getData()
+   .subscribe(data => this.updateData(data));
+
+  this.cancelSub = Observable.fromEvent(cancelBtn, ‘click’)
+   .subscribe(() => this.dataSub.unsubscribe());
+
+  this.rangeSub = Observable.fromEvent(rangeSelector, ‘change’)
+   .map(e => e.target.value)
+   .subscribe((value) => {
+        if (+value > 500) {
+            this.dataSub.unsubscribe();
+        }
+   });
+}
+
+ onUnmount() {
+  this.dataSub.unsubscribe();
+  this.cancelSub.unsubscribe();
+  this.rangeSub.unsubscribe();
+ }
+                </code></pre>
+            </section>
+
+            <section>
+                <span>Use <strong>takeUntil</strong></span>
+                    <pre><code>
+onMount() {
+   const data$ = this.getData();
+   const cancelBtn = this.element.querySelector(‘.cancel-button’);
+   const rangeSelector = this.element.querySelector(‘.rangeSelector’);
+   const cancel$ = Observable.fromEvent(cancelBtn, 'click');
+   const range$ = Observable.fromEvent(rangeSelector, 'change')
+                            .map(e => e.target.value);
+   
+   const stop$ = Observable.merge(cancel$, range$.filter(x => x > 500))
+   this.subscription = data$.takeUntil(stop$)
+        .subscribe(data => this.updateData(data));
+ }
+
+ onUnmount() {
+  this.subscription.unsubscribe();
+ }
+                </code></pre>
+            </section>
+
+             <section>
+                <h1>Subjects...</h1>
+                <h5>...watch out!</h5>
+                   <span>In RxJS, Subjects <strong>cannot be reused</strong>. That is to say, when a Subject <strong>completes or errors</strong>, 
+                    it can <strong>no longer</strong> be used. If you try to next on a Subject that is closed due to it’s complete or error method being called, it will silently <strong>ignore the notification</strong>.</span>
+            </section>
+
+
+        </div>
+    </div>
+
+    <script src="../../../jspm_packages/system.js"></script>
+    <script src="./config.js"></script>
+    <script>
+        System.import('./js/main');
+    </script>
+</body>
+
+</html>
