@@ -1,0 +1,255 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Handlee|Nothing+You+Could+Do|Open+Sans+Condensed:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/reveal.css">
+    <link rel="stylesheet" href="../../../jspm_packages/github/hakimel/reveal.js@3.3.0/css/theme/white.css">
+    <link rel="stylesheet" href="../../../src/css/common.css">
+    <link rel="stylesheet" href="../../css/solarized-light.css">
+    <link rel="stylesheet" href="./css/angular-pitfalls.css">
+
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? './css/print/pdf.css' : './css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-color="#20303b">
+                <h1>
+                    <span class="secondaryColor">Angular</span>
+                </h1>
+                <h3><span class="color: #b92526">... lesson learned</span></h3>
+              <img class="plain" src="./img/angular-wallpaper.jpg">
+                <!-- Image taken from: https://i.ytimg.com/vi/01N3qk-oJf0/maxresdefault.jpg -->
+
+              <p style="margin-left: 17em; margin-top:-6.5em" class="author secondaryColor">
+                  <span style="display:block">by</span>
+                  <span style="display:block">Ewa Nestorowicz</span>
+              </p>
+            </section>
+            <section data-background-color="var(--primary-color)">
+               <span  style="font-size: 6em; font-weight: bold; color: white;">PITFALLS!</span>
+            </section>
+
+            <section>
+                <h1>
+                    Pitfall #1
+                </h1>
+                <h5 class="fallbackColor">2 requests have been sent!</h5>
+                <p>The router <strong>subscribes</strong> to check if the route can be activated</p>
+                <p>A developer <strong>subscribes</strong> to redirect to a dialog</p>
+                <pre><code class="javascript">
+export class AuthGuardService implements CanActivate {
+     constructor(private router: Router, private fooService: FooService) {}
+
+     canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observable<`boolean`> {
+          const response = this.fooService.checkFoo();
+          response.subscribe(val => {
+                if (!val) {
+                    this.router.navigate([...]);
+                }
+          });
+
+          return response;
+      }}
+                </code></pre>
+
+            </section>
+
+            <section>
+                <h1 class="linkColor">solution #1</h1>
+                <p>Don't make <strong>nested subscriptions</strong></p>
+                <p>Use <strong>functional operators</strong></p>
+                <pre><code class="javascript">
+canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observable< boolean> {
+	return this.fooService.checkFoo()
+       .do(val => {
+         if (!val) {
+            this.router.navigate([...]);
+         }
+        });
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>pitfall #2</h1>
+                <h5 class="fallBackColor">avoid memory leaks</h5>
+                <p>Consider we have a stream...</p>
+                <iframe src="https://giphy.com/embed/14aumMYgx9CvKw" width="480" height="277" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/cats-endless-stream-14aumMYgx9CvKw"></a></p>
+                <p>If we subscribe to this stream, a <strong>subscription</strong> will be created</p>
+            </section>
+
+            <section>
+                <h1>so...</h1>
+                <h3 class="fallbackColor">... where is the memory leak?</h3>
+            </section>
+
+            <section>
+                <p>A subscription will exist unless the stream is <strong>completed</strong> or we <strong>unsubscribe </strong> from the stream.</p>
+                <pre><code class="javascript">
+    const interval$ = interval(1000);
+    const subscription = interval$.subscribe(val => console.log(val));
+                </code></pre>
+                <p>Even if a component gets <strong>destroyed</strong>, the stream <strong>will keep producing values!</strong></p>
+                <iframe src="https://giphy.com/embed/eVluHT4JazHZC" width="480" height="259" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/tom-brady-pandawhale-eVluHT4JazHZC"></a></p>
+            </section>
+
+            <section>
+                <h1 class="linkColor">solution #2</h1>
+                <p>1. use <strong>takeUntil</strong> operator</p>
+                <p>2. collect <strong>all</strong> subscriptions and <strong>unsubscribe manually</strong></p>
+                <p>3. use <strong>async pipe</strong></p>
+            </section>
+
+            <section>
+                <h3>1. takeUntil</h3>
+                <pre><code>
+  private destroy$: Subject< void> = new Subject< void>();
+  ngOnInit() {
+    this.userService.getUser(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(user => this.user = user);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.unsubscribe();
+  }
+                </code></pre>
+            </section>
+
+            <section>
+                <h3>2. Manually unsubscribe</h3>
+                <pre><code>
+  private subscriptions: [] = [];
+
+  ngOnInit() {
+    const subscription =
+    this.userService.getUser(id).subscribe(user => this.user = user);
+
+    this.subscriptions.push(subscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+                </code></pre>
+            </section>
+
+            <section>
+                <h3>3. Use async pipe</h3>
+                <pre><code>
+ <book-detail [book]="book$ | async"></book-detail>
+                </code></pre>
+                <p>1. Unsubscribe is <strong>automatically</strong> when the component gets <strong>destroyed</strong></p>
+                <p>2. <strong>Subscription & change detection </strong> is triggered automatically</p>
+            </section>
+
+
+            <section>
+                <h1>
+                    Pitfall #3
+                </h1>
+                <h5 class="fallbackColor">multiple http requests!</h5>
+                <p>Suppose we use async pipe and want to handle some errors...</p>
+
+                <pre><code>
+ <books-overview *ngFor="let book of books$ | async"></books-overview>
+ ...
+
+ ngOnInit() {
+        this.books$ = this.bookService.loadBooks();
+
+        this.books$.subscribe(
+            next => console.log(next),
+            error => console.error(error),
+            () => console.log('completed!')
+        );
+ }
+                </code></pre>
+
+            </section>
+
+            <section>
+             <h1 class="linkColor">solution #3</h1>
+                <h5>use publish & share operators!</h5>
+                <pre><code>
+ <books-overview *ngFor="let book of books$ | async"></books-overview>
+ ...
+
+ ngOnInit() {
+   this.books$ = this.bookService.loadBooks().publishLast().refCount();
+ }
+                </code></pre>
+                <p>refCount returns an observable that maintains a reference count of subscribers</p>
+                <p></p>
+            </section>
+
+            <section>
+                <h1>hot vs. cold observables</h1>
+            </section>
+
+            <section>
+             <h1>pitfall #4</h1>
+                <h5>use mocks and mockbackend!</h5>
+            </section>
+
+            <section data-background-color="#00488D">
+                <div style="display: block; font-weight: bold;">
+                    <div style="font-size: 4em; color: white;">TIPS</div>
+                    <h1 style="color: black;">&</h1>
+                    <div style="font-size: 4em; color: #45e6ff;">TRICKS</div>
+                </div>
+            </section>
+
+            <section>
+                <h1 class="tertiaryColor">#1 combine Latest</h1>
+            </section>
+
+            <section>
+                <h1 class="tertiaryColor">#2 rxjs pipe</h1>
+                <h5 class="fallbackColor">available with rxjs 5.5+</h5>
+            </section>
+
+
+            <section>
+                <h1 class="tertiaryColor">#3 if... else</h1>
+            </section>
+
+            <section>
+                <h1 class="tertiaryColor">#4 bonus</h1>
+                <h5 class="fallbackColor">What's wrong with this code?</h5>
+                <pre><code>
+                          if (book.id) {
+                                updateBook(book);
+                          } else {
+                                saveBook(book);
+                          }
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>Q &amp; A</h1>
+                <img class="plain" src="./img/Lets-go.png">
+            </section>
+
+        </div>
+    </div>
+
+    <script src="../../../jspm_packages/system.js"></script>
+    <script src="./config.js"></script>
+    <script>
+        System.import('./js/main');
+    </script>
+</body>
+
+</html>
