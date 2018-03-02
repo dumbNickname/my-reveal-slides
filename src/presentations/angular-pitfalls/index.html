@@ -50,7 +50,8 @@
 export class AuthGuardService implements CanActivate {
      constructor(private router: Router, private fooService: FooService) {}
 
-     canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observable<`boolean`> {
+     canActivate(route?: ActivatedRouteSnapshot,
+                 state?: RouterStateSnapshot): Observable< boolean> {
           const response = this.fooService.checkFoo();
           response.subscribe(val => {
                 if (!val) {
@@ -111,7 +112,7 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
             </section>
 
             <section>
-                <h3>1. takeUntil</h3>
+                <h3 class="linkColor">1. takeUntil</h3>
                 <pre><code>
   private destroy$: Subject< void> = new Subject< void>();
   ngOnInit() {
@@ -128,7 +129,7 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
             </section>
 
             <section>
-                <h3>2. Manually unsubscribe</h3>
+                <h3 class="linkColor">2. Manually unsubscribe</h3>
                 <pre><code>
   private subscriptions: [] = [];
 
@@ -146,7 +147,7 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
             </section>
 
             <section>
-                <h3>3. Use async pipe</h3>
+                <h3 class="linkColor">3. Use async pipe</h3>
                 <pre><code>
  <book-detail [book]="book$ | async"></book-detail>
                 </code></pre>
@@ -154,6 +155,35 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
                 <p>2. <strong>Subscription & change detection </strong> is triggered automatically</p>
             </section>
 
+            <section>
+                <h1 style="display: inline;"> hot </h1>
+                <h1 style="display: inline;" class="fallbackColor" style="display: inline-block;"> vs. </h1>
+                <h1 style="display: inline;" class="tertiaryColor"> cold </h1>
+                <h2 class="fallbackColor"> observables </h2>
+                <ul style="text-align: center; list-style:none;">
+                    <li><span class="tertiaryColor"><strong>cold</strong></span><span>: observables create a <strong>new producer</strong> is created <strong>each time</strong> a consumer subscribes to them</span></li>
+                    <li><span class="primaryColor"><strong>hot</strong></span><span>: observables <strong>share a single producer</strong> with <strong>every consumer</strong> that subscribes to them</span></li>
+                    <li><span><strong>each observable</strong> is</span> <span class="tertiaryColor"><strong>cold</strong></span> <span> by default</span></li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>Pitfall #3</h1>
+                <h5 class="fallbackColor">multiple http requests!</h5>
+                <pre><code>
+
+<books-overview [books]="books$ | async"></books-overview>
+Total number of book: {{numberOfBooks$ | async}}
+
+ ngOnInit() {
+    this.books$ = this.bookService.loadBooks();
+    // the subscription on this stream will execute the xhr call again
+    this.numberOfBooks$ = this.books$.pipe(map(...));
+ }
+                </code></pre>
+                <p>The xhr call will be triggered <strong>twice</strong></p>
+                <p style="font-weight: bold" class="primaryColor">numberOfBooks$ depends on books$!</p>
+            </section>
 
             <section>
                 <h1>
@@ -180,27 +210,41 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
             </section>
 
             <section>
-             <h1 class="linkColor">solution #3</h1>
+             <h2 class="linkColor">solution #3</h2>
                 <h5>use publish & share operators!</h5>
+                <p>to <strong>share</strong> your subscriptions</p>
                 <pre><code>
- <books-overview *ngFor="let book of books$ | async"></books-overview>
- ...
-
  ngOnInit() {
    this.books$ = this.bookService.loadBooks().publishLast().refCount();
+   this.books$ = this.bookService.loadBooks().pipe(share());
  }
                 </code></pre>
-                <p>refCount returns an observable that maintains a reference count of subscribers</p>
-                <p></p>
+                <p><strong>publishLast</strong> shares the last emitted value - only if the stream <strong>completes</strong></p>
+                <p><strong>publishReplay(1) </strong>shares the latest emitted value, which is done <strong>after any emission</strong></p>
+                <p><strong>refCount</strong> returns an observable that maintains a <strong>reference count of subscribers</strong></p>
             </section>
 
             <section>
-                <h1>hot vs. cold observables</h1>
+                <h1>pitfall #4</h1>
+                <h5>don't pass streams to services!</h5>
+                <pre><code>
+     this.books$ = this.bookService.loadBooks();
+     filteredBooks$ = this.bookService.filterBooks(this.books$);
+                </code></pre>
+                <p style="font-weight: bold" class="primaryColor">We don't know what's gonna happen to this stream!</p>
+                <p>May be subscribed to?</p>
+                <p>Combined with another stream?</p>
             </section>
 
             <section>
-             <h1>pitfall #4</h1>
-                <h5>use mocks and mockbackend!</h5>
+                <h2 class="linkColor">solution #4</h2>
+                <h5>use switch map!</h5>
+                <pre><code>
+this.books$ = this.bookService.loadBooks();
+filteredBooks$ =
+this.books$.pipe(switchMap(books => this.bookService.filterBooks(books)));
+
+                </code></pre>
             </section>
 
             <section data-background-color="#00488D">
@@ -213,21 +257,128 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
 
             <section>
                 <h1 class="tertiaryColor">#1 combine Latest</h1>
+                <p>When any observable emits a value, emit the <strong>latest value from each.</strong></p>
+                <img src="./img/combineLatest.PNG" alt="" class="plainImage">
             </section>
 
             <section>
                 <h1 class="tertiaryColor">#2 rxjs pipe</h1>
                 <h5 class="fallbackColor">available with rxjs 5.5+</h5>
+                <h5 class="primaryColor">What are pipes?</h5>
+                    <p>Those operators are <strong>pure functions</strong></p>
+                    <p>They can be used as <strong>standalone operators </strong>instead of <strong>methods </strong>on an observable</p>
+                    <p>They're <strong>lightweight</strong></p>
+                    <p>Can <strong>decrease</strong> build size</p>
+                    <p>They make code <strong>reusable</strong></p>
             </section>
 
+            <section>
+                <h1 class="tertiaryColor">#2 rxjs pipe</h1>
+                <pre><code>
+        import { range } from 'rxjs/observable/range';
+        import { map, filter } from 'rxjs/operators'; // import changed!
+
+        const source$ = range(0, 10);
+
+        source$.pipe(
+          filter(x => x % 2 === 0),
+          map(x => x + x)
+        )
+        .subscribe(x => console.log)
+                </code></pre>
+            </section>
+
+            <section>
+                <h1 class="tertiaryColor">pure functions</h1>
+                <p><strong>accept </strong>an observable and <strong>return</strong> an observable</p>
+                <p>are <strong>tree-shakable</strong> by webpack or other bundlers</p>
+                <p>linters can <strong>identify</strong> that the functions are declared/imported but <strong>not used</strong></p>
+
+                <h5 class="primaryColor">Tree-shaking is the process of dead code elimination</h5>
+            </section>
+
+            <section>
+                <img class="plain" src="./img/pipes.jpeg">
+                <!-- Image taken from: https://blog.hackages.io/rxjs-5-5-piping-all-the-things-9d469d1b3f44 -->
+            </section>
 
             <section>
                 <h1 class="tertiaryColor">#3 if... else</h1>
+                <pre><code>
+        <div *ngIf="books$ | async as books; else loading">
+            <books-overview [books]="books"></books-overview>
+        </div>
+        <ng-template #loading>Loading...</ng-template>
+                </code></pre>
             </section>
 
             <section>
-                <h1 class="tertiaryColor">#4 bonus</h1>
-                <h5 class="fallbackColor">What's wrong with this code?</h5>
+                <h1 class="tertiaryColor">#4 The Two Ways to Grab Route Parameters</h1>
+                <p>We can grab <strong>route parameters</strong> using:</p>
+                <pre><code>
+             export const bookDetailsRoute: Route = {
+              path: 'book/:id',
+              component: BookDetailsComponent,
+             }   </code></pre>
+                <ul>
+                    <li><strong>The Snapshot Way</strong></li>
+                    <li><strong>The Observable/Stream Way</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h1 class="tertiaryColor">The Snapshot Way</h1>
+                <p>We can grab <strong>route parameters</strong> using:</p>
+                <pre><code class="javascript">
+             constructor(private route: ActivatedRoute) {}
+             ngOnInit() {
+                // this is where we'll grab the data
+                // grab them using the snapshot method
+                const id = +this.route.snapshot.params['id'];
+             }
+              </code></pre>
+               <p>This will be <strong>enough</strong> to grab the id, but...</p>
+                <p>... keep in mind that Angular <strong>reuses components to improve performance.</strong></p>
+            </section>
+
+            <section>
+                <h2>so what ?</h2>
+                <iframe src="https://giphy.com/embed/maIjt7ix50O4g" width="880" height="567" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/reaction-love-it-jealous-maIjt7ix50O4g"></a></p>
+            </section>
+
+            <section>
+                <h1 class="tertiaryColor">The Snapshot Way</h1>
+                <p>If we pick <strong> another book</strong> on this side:</p>
+                <h5 class="primaryColor">The component wouldn't update!</h5>
+                <p>Keep in mind that:</p>
+                <ul>
+                    <li>The snapshot method runs <strong>only ones</strong> when the component is <strong>initiated</strong></li>
+                    <li>If you plan <strong>reusing</strong> the component, use the <strong>observable way</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h1 class="tertiaryColor">The Observable Way</h1>
+                <p>Observables are <strong>the stream of data</strong></p>
+                <h5 class="primaryColor">The Observable will pass along the new data as it changes!</h5>
+                <pre><code class="javascript">
+                ngOnInit() {
+                  // subscribe to the parameters observable
+                  this.route.paramMap.subscribe(params => {
+                    const id = +params.get('id');
+                  });
+                }
+                </code></pre>
+                <p>Please use:</p>
+                <ul>
+                    <li><strong>paramMap</strong> if you work with <strong>Angular 4+</strong></li>
+                    <li><strong>params</strong> if you work with <strong>Angular v2</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h1 class="tertiaryColor">#5 bonus</h1>
+                <h5 class="fallbackColor">What MAY be wrong with this code?</h5>
                 <pre><code>
                           if (book.id) {
                                 updateBook(book);
@@ -240,6 +391,17 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
             <section>
                 <h1>Q &amp; A</h1>
                 <img class="plain" src="./img/Lets-go.png">
+            </section>
+
+            <section>
+                <h1>Links</h1>
+                <ul>
+                    <li><a href="https://scotch.io/tutorials/handling-route-parameters-in-angular-v2">handling route parameters in angular</a></li>
+                    <li><a href="https://blog.strongbrew.io/rxjs-best-practices-in-angular/">rxjs best practices</a></li>
+                    <li><a href="https://blog.angularindepth.com/rxjs-how-to-use-refcount-73a0c6619a4e">rxjs how to use refcount</a></li>
+                    <li><a href="https://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html">cold vs hot observables</a></li>
+                    <li><a href="https://blog.hackages.io/rxjs-5-5-piping-all-the-things-9d469d1b3f44">rxjs pipes</a></li>
+                </ul>
             </section>
 
         </div>
