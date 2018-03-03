@@ -161,9 +161,9 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
                 <h1 style="display: inline;" class="tertiaryColor"> cold </h1>
                 <h2 class="fallbackColor"> observables </h2>
                 <ul style="text-align: center; list-style:none;">
-                    <li><span class="tertiaryColor"><strong>cold</strong></span><span>: observables create a <strong>new producer</strong> is created <strong>each time</strong> a consumer subscribes to them</span></li>
+                    <li><span class="tertiaryColor"><strong>cold</strong></span><span>: observables create a <strong>new producer</strong> <strong> each time</strong> a consumer subscribes to them</span></li>
                     <li><span class="primaryColor"><strong>hot</strong></span><span>: observables <strong>share a single producer</strong> with <strong>every consumer</strong> that subscribes to them</span></li>
-                    <li><span><strong>each observable</strong> is</span> <span class="tertiaryColor"><strong>cold</strong></span> <span> by default</span></li>
+                    <li style="margin-top: 1em"><span><strong>each observable</strong> is</span> <span class="tertiaryColor"><strong>cold</strong></span> <span> by default</span></li>
                 </ul>
             </section>
 
@@ -352,7 +352,7 @@ this.books$.pipe(switchMap(books => this.bookService.filterBooks(books)));
                 <h5 class="primaryColor">The component wouldn't update!</h5>
                 <p>Keep in mind that:</p>
                 <ul>
-                    <li>The snapshot method runs <strong>only ones</strong> when the component is <strong>initiated</strong></li>
+                    <li>The snapshot method runs <strong>only once</strong> when the component is <strong>initiated</strong></li>
                     <li>If you plan <strong>reusing</strong> the component, use the <strong>observable way</strong></li>
                 </ul>
             </section>
