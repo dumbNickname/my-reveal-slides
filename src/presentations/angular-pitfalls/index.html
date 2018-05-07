@@ -43,41 +43,30 @@
                 <h1>
                     Pitfall #1
                 </h1>
-                <h5 class="fallbackColor">2 requests have been sent!</h5>
-                <p>The router <strong>subscribes</strong> to check if the route can be activated</p>
-                <p>A developer <strong>subscribes</strong> to redirect to a dialog</p>
+                <h5 class="fallbackColor">Nested subscriptions</h5>
+                <p>The code is <strong>unreadable and complex</strong></p>
+                <p>There is <strong>no control</strong> over a stream</p>
+                <p>It is <strong>not reactive</strong> and may cause <strong>callback hell</strong></p>
                 <pre><code class="javascript">
-export class AuthGuardService implements CanActivate {
-     constructor(private router: Router, private fooService: FooService) {}
-
-     canActivate(route?: ActivatedRouteSnapshot,
-                 state?: RouterStateSnapshot): Observable< boolean> {
-          const response = this.fooService.checkFoo();
-          response.subscribe(val => {
-                if (!val) {
-                    this.router.navigate([...]);
-                }
-          });
-
-          return response;
-      }}
+this.route.params.pipe(
+                    map(param => param.id)
+                  )
+                 .subscribe(id =>
+                    this.bookService.getBookById(id)
+                        .subscribe(book => this.book = book);
                 </code></pre>
 
             </section>
 
             <section>
                 <h1 class="linkColor">solution #1</h1>
-                <p>Don't make <strong>nested subscriptions</strong></p>
-                <p>Use <strong>functional operators</strong></p>
+                <p>Use <strong>higher order streams</strong> such as <strong>switchMap</strong></p>
                 <pre><code class="javascript">
-canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observable< boolean> {
-	return this.fooService.checkFoo()
-       .do(val => {
-         if (!val) {
-            this.router.navigate([...]);
-         }
-        });
-}
+this.route.params.pipe(
+                    map(param => param.id),
+                    switchMap(id => this.bookService.getBookById(id))
+                  )
+                 .subscribe(book => this.book = book);
                 </code></pre>
             </section>
 
@@ -156,6 +145,13 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
             </section>
 
             <section>
+                <h3 class="linkColor">When use what?</h3>
+                <p>We should use <strong>async pipes</strong> if possible, because updates and unsubscribes are triggered <strong>automatically.</strong></p>
+                <p>Instead of manually unsubscribe we should use<strong> takeUntil </strong> operator. If someone analyses a code and sees a stream, it's noticeable that
+                    someone was concerned about unsubscribe and we <strong>don't need extra subscription fields</strong> for each stream.</p>
+            </section>
+
+            <section>
                 <h1 style="display: inline;"> hot </h1>
                 <h1 style="display: inline;" class="fallbackColor" style="display: inline-block;"> vs. </h1>
                 <h1 style="display: inline;" class="tertiaryColor"> cold </h1>
@@ -165,6 +161,21 @@ canActivate(route?: ActivatedRouteSnapshot, state?: RouterStateSnapshot): Observ
                     <li><span class="primaryColor"><strong>hot</strong></span><span>: observables <strong>share a single producer</strong> with <strong>every consumer</strong> that subscribes to them</span></li>
                     <li style="margin-top: 1em"><span><strong>each observable</strong> is</span> <span class="tertiaryColor"><strong>cold</strong></span> <span> by default</span></li>
                 </ul>
+            </section>
+
+            <section data-state="jsbin">
+               <h1>cold or hot?</h1>
+                <iframe class="jsbin" data-src="http://jsbin.com/vesakibequ/edit?js,console"></iframe>
+            </section>
+
+            <section data-state="jsbin">
+                <h1>cold or hot?</h1>
+                <iframe class="jsbin" data-src="http://jsbin.com/nanevudubi/edit?js,console"></iframe>
+            </section>
+
+            <section data-state="jsbin">
+                <h1>cold or hot?</h1>
+                <iframe class="jsbin" data-src="http://jsbin.com/minoviqefu/edit?js,console"></iframe>
             </section>
 
             <section>
@@ -323,6 +334,7 @@ this.books$.pipe(switchMap(books => this.bookService.filterBooks(books)));
                 <ul>
                     <li><strong>The Snapshot Way</strong></li>
                     <li><strong>The Observable/Stream Way</strong></li>
+                    <li><strong>Route configuration</strong></li>
                 </ul>
             </section>
 
@@ -374,6 +386,37 @@ this.books$.pipe(switchMap(books => this.bookService.filterBooks(books)));
                     <li><strong>paramMap</strong> if you work with <strong>Angular 4+</strong></li>
                     <li><strong>params</strong> if you work with <strong>Angular v2</strong></li>
                 </ul>
+            </section>
+
+            <section>
+            <h1 class="tertiaryColor">Route configuration</h1>
+            <p>The option <strong>runGuardsAndResolvers </strong> must be specified. It has three different values:</p>
+            <ul>
+                <li><strong>paramsChange </strong> this will fire when <strong>route params </strong> have changed: /book/:id</li>
+                <li><strong>paramsOrQueryParamsChange </strong> this will fire when either <strong>route param</strong> or <strong> query param</strong> has changed: /books/adventure?limit=10</li>
+                <li><strong>always </strong> this will fire <strong> always when route is navigated</strong></li>
+            </ul>
+
+            </section>
+
+            <section>
+                <h1 class="tertiaryColor">Route configuration</h1>
+                <pre><code class="javascript">
+export const booksOverviewRoute: Route = {
+    path: '',
+    children: [
+        {
+            path: '',
+            resolve: {
+                products: BooksOverviewResolver,
+            },
+            component: BooksOverviewComponent,
+            runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+        }
+    ],
+};
+                </code></pre>
+                <h5>By default they run <strong>only when the matrix parameters of the route change</strong></h5>
             </section>
 
             <section>
