@@ -68,6 +68,7 @@ this.route.params.pipe(
                   )
                  .subscribe(book => this.book = book);
                 </code></pre>
+                <iframe class="jsbin" data-src="http://rxmarbles.com/#switchMap"></iframe>
             </section>
 
             <section>
@@ -164,18 +165,22 @@ this.route.params.pipe(
             </section>
 
             <section data-state="jsbin">
-               <h1>cold or hot?</h1>
+                <h1 class="tertiaryColor"> Cold </h1>
+                <h2 class="fallbackColor"> Observable </h2>
                 <iframe class="jsbin" data-src="http://jsbin.com/vesakibequ/edit?js,console"></iframe>
             </section>
 
             <section data-state="jsbin">
-                <h1>cold or hot?</h1>
+                <h1 style="color: orangered" class="tertiaryColor"> Warm </h1>
+                <h2 class="fallbackColor"> Observable </h2>
                 <iframe class="jsbin" data-src="http://jsbin.com/nanevudubi/edit?js,console"></iframe>
             </section>
 
             <section data-state="jsbin">
-                <h1>cold or hot?</h1>
+                <h1 class="primaryColor"> Hot </h1>
+                <h2 class="fallbackColor"> Observable </h2>
                 <iframe class="jsbin" data-src="http://jsbin.com/minoviqefu/edit?js,console"></iframe>
+                <p><strong>refCount</strong> returns an observable that maintains a <strong>reference count of subscribers</strong></p>
             </section>
 
             <section>
@@ -221,18 +226,35 @@ Total number of book: {{numberOfBooks$ | async}}
             </section>
 
             <section>
+                <h2>pitfall #3</h2>
+                <h5 class="fallbackColor">multiple http requests!</h5>
+                <p>what will happen if we subscribe to a stream twice?</p>
+                <pre><code>
+    List1
+    <ul>
+      <li *ngFor="let book of books | async">{{book.name}}</li>
+    </ul>
+    List2
+    <ul>
+      <li *ngFor="let book of books | async">{{book.authors}}</li>
+    </ul>
+                </code></pre>
+                <p>in the network tab we will see that books were fetched <strong>twice</strong></p>
+            </section>
+
+            <section>
              <h2 class="linkColor">solution #3</h2>
                 <h5>use publish & share operators!</h5>
                 <p>to <strong>share</strong> your subscriptions</p>
                 <pre><code>
  ngOnInit() {
-   this.books$ = this.bookService.loadBooks().publishLast().refCount();
-   this.books$ = this.bookService.loadBooks().pipe(share());
+   this.books$ = this.bookService.loadBooks().shareReplay(1);
+   this.books$ = this.bookService.loadBooks().pipe(share()); // share() === publish().refCount()
  }
                 </code></pre>
-                <p><strong>publishLast</strong> shares the last emitted value - only if the stream <strong>completes</strong></p>
-                <p><strong>publishReplay(1) </strong>shares the latest emitted value, which is done <strong>after any emission</strong></p>
-                <p><strong>refCount</strong> returns an observable that maintains a <strong>reference count of subscribers</strong></p>
+                <p><strong>share</strong> - only <strong>first value</strong> will be published to <strong>first subscriber</strong>. The second async will <strong>miss it</strong> in case there is a delay</p>
+                <p><strong>publishReplay(1) </strong> will keep track of the <strong>previous value of the stream</strong> (recommended)</p>
+
             </section>
 
             <section>
@@ -324,7 +346,7 @@ this.books$.pipe(switchMap(books => this.bookService.filterBooks(books)));
             </section>
 
             <section>
-                <h1 class="tertiaryColor">#4 The Two Ways to Grab Route Parameters</h1>
+                <h1 class="tertiaryColor">#4 The Three Ways to Grab Route Parameters</h1>
                 <p>We can grab <strong>route parameters</strong> using:</p>
                 <pre><code>
              export const bookDetailsRoute: Route = {
